@@ -21,6 +21,8 @@ import {
   Activity,
 } from "react-feather";
 
+import { FiMenu } from "react-icons/fi";
+
 // All pages that rely on 3rd party components (other than Material-UI) are
 // loaded asynchronously, to keep the initial JS bundle to a minimum size
 
@@ -120,27 +122,79 @@ import EditArtisan from "../pages/Saweblia/Comptes/EditArtisan";
 import CoordinateurEdit from "../pages/Saweblia/Comptes/CoordinateurEdit";
 import EditFournisseur from "../pages/Saweblia/Comptes/EditFournisseur";
 
+//Catalogues imports
+import Services from "../pages/Saweblia/catalogue/Display/Services";
+import Categories from "../pages/Saweblia/catalogue/Display/Categories"
+import Prestations from "../pages/Saweblia/catalogue/Display/Prestations"
+import Add_categorie from "../pages/Saweblia/catalogue/Add/Add_categorie"
+import Add_service from "../pages/Saweblia/catalogue/Add/Add_service";
+import Add_prestation from "../pages/Saweblia/catalogue/Add/Add_prestation"
 
+
+//Catalogues Routes
+const CatalogueRoutess = {
+  id: "Catalogues",
+  path: "/Catalogues",
+  header: "Catalogues",
+  icon: <FiMenu />,
+  containsHome: true,
+  children: [
+    {
+      path: "/Catalogues/services",
+      name: "Services",
+      component: Services,
+    },
+    {
+      path: "/Catalogues/Categories",
+      name: "Categories",
+      component: Categories,
+    },
+    {
+      path: "/Catalogues/Prestations",
+      name: "Prestations",
+      component: Prestations,
+    },
+    {
+      path: "/Catalogues/Add_categorie",
+      name: "Ajouter categorie",
+      component: Add_categorie,
+    },
+    {
+      path: "/Catalogues/Add_service",
+      name: "Ajouter service",
+      component: Add_service,
+    },
+    {
+      path: "/Catalogues/Add_prestation",
+      name: "Ajouter prestation",
+      component: Add_prestation,
+    }
+  ]
+}
+
+
+
+// Comptes Routes
 const CompteRoutes = {
   id: "Comptes",
   path: "/Comptes",
   header: "Comptes ",
   icon: <Users />,
   containsHome: true,
-  
-    children : [
+
+  children: [
     {
-    path: "/Comptes/comptes",
-    name: "Comptes",
-    component: Comptes
+      path: "/Comptes/comptes",
+      name: "Comptes",
+      component: Comptes
     },
     {
-    path: "/Comptes/creer_compte",
-    name: "Creer Compte",
-    component: CreerCompte,
-      
+      path: "/Comptes/creer_compte",
+      name: "Creer Compte",
+      component: CreerCompte,
+
     },
-    ]
+  ]
 };
 
 const Client_Edit = {
@@ -151,10 +205,10 @@ const Client_Edit = {
 };
 
 const Fournisseur_Edit = {
-  id : "Edit_fournisseur",
-  path : "/Comptes/Edit_Fournisseur",
-  component : EditFournisseur,
-  children : null ,
+  id: "Edit_fournisseur",
+  path: "/Comptes/Edit_Fournisseur",
+  component: EditFournisseur,
+  children: null,
 };
 
 const Coordinateur_Edit = {
@@ -591,6 +645,7 @@ const protectedPageRoutes = {
 
 // Routes using the Dashboard layout
 export const dashboardLayoutRoutes = [
+  CatalogueRoutess,
   Coordinateur_Edit,
   Fournisseur_Edit,
   Artisan_Edit,
@@ -624,6 +679,7 @@ export const protectedRoutes = [protectedPageRoutes];
 
 // Routes visible in the sidebar
 export const sidebarRoutes = [
+  CatalogueRoutess,
   Coordinateur_Edit,
   Fournisseur_Edit,
   Artisan_Edit,
