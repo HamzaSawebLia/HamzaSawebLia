@@ -35,7 +35,7 @@ import {
 import { Map, Home, Save } from "react-feather";
 import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
-import { FiPlus, FiSave, FiHome, FiMap } from "react-icons/fi";
+import { FiPlus, FiSave, FiHome, FiMap, FiChevronsLeft } from "react-icons/fi";
 
 import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
 
@@ -72,6 +72,7 @@ export default class EditClient extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      table_adresse: 0,
       Card_adresse: 0,
       loading: 0,
       adresse_pass: 0,
@@ -114,7 +115,7 @@ export default class EditClient extends Component {
   onchange_client_localisation = (e) => { this.setState({ client_localisation: e.target.value }) }
 
 
-  componentDidMount = () => {
+  componentworks = () => {
 
     axios.get(`http://127.0.0.1:8000/api/client/client_id/${this.props.history.location.state.IdClient}`)
       .then((ResData) => {
@@ -219,28 +220,32 @@ export default class EditClient extends Component {
         </Alert>) : null}
         <Card >
           <CardContent>
-            <div className="row">
-              <div className="column">
-                <Link component={NavLink} exact to="/"><FiHome style={{ marginTop: "10px" }} mt={2} /> Home </Link>
-                <Link component={NavLink} exact to="/Comptes/comptes">/Comptes </Link>
-                <Link component={NavLink} exact to="/Comptes/Edit_client">/Editer client </Link>
+            <Breadcrumbs style={{ marginTop: "10px" }} aria-label="Breadcrumb" mt={2}>
+              <Link component={NavLink} exact to="/">
+                <FiHome size={15} /> Dashboard
+                     </Link>
+              <Link component={NavLink} exact to="/Comptes/comptes">Comptes </Link>
+              <Typography>Modifier client</Typography>
+            </Breadcrumbs>
 
 
-                {this.state.loading == 1 ? (<div style={{ float: "right", marginBottom: "10px" }}> <CircularProgress m={2} color="secondary" /></div>) : (
-                  <button style={{ float: "right", backgroundColor: "orange", border: "none", color: "white", borderRadius: "8px", padding: "10px", textAlign: "center", textDecoration: "none", display: "inline-block", fontSize: "16px", margin: "-5px 10px", cursor: "pointer" }} onClick={() => { this.onclick_updateClient() }}>
-                    <FiSave style={{ marginRight: "10px" }} /> Enregistrer
-                  </button>)}
 
-              </div>
-            </div>
+            {this.state.loading == 1 ? (<div style={{ float: "right", marginBottom: "10px" }}> <CircularProgress m={2} color="secondary" /></div>) : (
+              <Button variant="contained" color="primary" style={{ float: "right", marginTop: "-30px" }} onClick={() => { this.onclick_updateClient() }}>
+                <FiSave style={{ marginRight: "10px" }} /> Enregistrer
+              </Button>
+            )}
+            <Link component={NavLink} exact to="/Comptes/comptes">
+              <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-30px" }} >
+                <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
+              </Button>
+            </Link>
 
           </CardContent>
         </Card>
         <Card mb={6} style={{ marginTop: "50px" }}>
           <CardContent>
-            <Typography variant="h6" gutterBottom>
-              Créer un compte
-        </Typography>
+
             <Grid container spacing={6}>
               <Grid item md={12}>
                 <form noValidate autoComplete="off">
@@ -275,30 +280,7 @@ export default class EditClient extends Component {
                     variant="outlined"
                     m={4}
                   />
-                  <Paper mt={3} style={{ float: "right", marginBottom: "60px", marginRight: "300px" }}>
-                    <FormControl component="fieldset">
-                      <FormLabel component="legend">Activation du compte</FormLabel>
-                      <RadioGroup
-                        aria-label="Activation du compte"
-                        name="gender1"
-                        value={this.state.client_activer}
-                        onChange={this.onchange_client_activer}
-                      >
-                        <Paper mt={3}>
-                          <FormControlLabel
-                            value="1"
-                            control={<Radio />}
-                            label="Activer"
-                          />
-                          <FormControlLabel
-                            value="2"
-                            control={<Radio />}
-                            label="No Activer"
-                          />
-                        </Paper>
-                      </RadioGroup>
-                    </FormControl>
-                  </Paper>
+
 
 
                 </form>
@@ -312,14 +294,14 @@ export default class EditClient extends Component {
         <Card mb={6}>
           <CardContent>
             <Typography variant="h6" gutterBottom>
-              Client info
+              Informations détaillées
         </Typography>
 
             <Grid container spacing={6} >
               <Grid item md={8}>
                 <Paper mt={3}>
                   <FormControl m={2} style={{ width: "40%" }}>
-                    <InputLabel >Access Channel</InputLabel>
+                    <InputLabel >Canal d'acquisition</InputLabel>
                     <Select
                       value={this.state.client_access_channel}
                       onChange={this.onchange_client_access_channel}
@@ -333,7 +315,7 @@ export default class EditClient extends Component {
                     </Select>
                   </FormControl>
                   <FormControl m={2} style={{ width: "40%", marginLeft: "20px" }}>
-                    <InputLabel >Type Client</InputLabel>
+                    <InputLabel >Catégorie</InputLabel>
                     <Select
                       value={this.state.client_type}
                       onChange={this.onchange_client_type}
@@ -352,7 +334,7 @@ export default class EditClient extends Component {
                     style={{ marginTop: "20px" }}
                     onChange={this.onchange_client_commantaire}
                     value={this.state.client_commantaire}
-                    label="Commantaire"
+                    label="Observations"
                     id="biography"
                     multiline={true}
                     rows={3}
@@ -370,38 +352,26 @@ export default class EditClient extends Component {
           </CardContent>
         </Card>
 
-        <Card style={{ marginTop: "40px" }}>
-          <CardContent>
-            {this.state.loading == 1 ? (<div style={{ float: "right", marginBottom: "10px" }}> <CircularProgress m={2} color="secondary" /></div>) : (<div className="row">
-              <div className="column">
-                {this.state.Card_adresse == 0 ? (<Button variant="contained" color="primary" style={{ float: "right", marginBottom: "20px" }} onClick={() => { this.setState({ Card_adresse: 1 }) }}>
-                  <FiPlus style={{ marginRight: "10px" }} /> Ajouter Adresse
-                </Button>) : (<Button variant="contained" color="primary" style={{ float: "right", marginBottom: "20px" }} onClick={() => { this.onclick_adresse() }}>
-                  <FiSave style={{ marginRight: "10px" }} /> Nouvelle Adresse
-                </Button>)}
-
-
-              </div> </div>)}
-          </CardContent>
-        </Card>
         {this.state.adresse_pass == 1 ? (<Alert mb={4} severity="success">
           votre Insértion d'adresse est passé avec succée
         </Alert>) : null}
-        <Card mb={6} style={{ marginTop: "40px" }}>
+        {this.state.table_adresse == 0 ? (<Card mb={6} style={{ marginTop: "40px" }}>
           <CardContent>
             <Typography variant="h6" gutterBottom>
-              Les Adresses de çe client
+              Lieux d'intervention
               </Typography>
+            <Button variant="contained" color="primary" style={{ float: "right", marginTop: "-26px" }} onClick={() => { this.setState({ Card_adresse: 1, table_adresse: 1 }) }}>
+              <FiPlus style={{ marginRight: "10px" }} /> Ajouter
+                </Button>
             <Table style={{ marginTop: "40px" }}>
               <TableHead>
 
                 <TableRow>
                   <TableCell align="left" >Libelle</TableCell>
+                  <TableCell align="left" >Ville</TableCell>
                   <TableCell align="left" >Quartier</TableCell>
                   <TableCell align="left" >Rue</TableCell>
-                  <TableCell align="left" >Ville</TableCell>
-                  <TableCell align="left" >Numéro Bureau</TableCell>
-                  <TableCell align="left" >Surface Bureau</TableCell>
+                  <TableCell align="left" > </TableCell>
 
 
                 </TableRow>
@@ -410,19 +380,19 @@ export default class EditClient extends Component {
               <TableBody>
 
 
-                {this.state.Adresse.map((row) => (
-                  <TableRow key={row.id}>
-                    <TableCell align="left"> {row.libelle} </TableCell>
-                    <TableCell align="left">{row.quartier}</TableCell>
-                    <TableCell align="left">{row.rue}</TableCell>
-                    <TableCell align="left">{row.ville}</TableCell>
-                    {row.numero_bureau == null ? (<TableCell align="left">Vide</TableCell>) : (<TableCell align="left">{row.numero_bureau}</TableCell>)}
-                    {row.surface_bureau == null ? (<TableCell align="left">Vide</TableCell>) : (<TableCell align="left">{row.surface_bureau}</TableCell>)}
-                  </TableRow>
-                ))}
+
+                <TableRow >
+                  <TableCell style={{ width: "10%" }} align="left">libelle test</TableCell>
+                  <TableCell align="left">Ville test</TableCell>
+                  <TableCell align="left">Quartier test</TableCell>
+                  <TableCell align="left">Rue Test</TableCell>
+                  <TableCell><FiMap size={20} /></TableCell>
+                </TableRow>
+
 
 
                 <TablePagination
+                  style={{ width: "200%" }}
                   rowsPerPageOptions={[5, 10, 25]}
                   component="div"
                   count={10}
@@ -434,12 +404,17 @@ export default class EditClient extends Component {
               </TableBody>
             </Table>
           </CardContent>
-        </Card>
+        </Card>) : null}
+
         {this.state.Card_adresse == 1 ? (<Card mb={6} style={{ marginTop: "40px" }}>
           <CardContent>
             <Typography variant="h6" gutterBottom>
-              <FiMap style={{ marginRight: "10px" }} />Nouvelle Adresse d'intervention
+              Lieux d'intervention
         </Typography>
+
+            <Button variant="contained" color="primary" style={{ float: "right", marginTop: "-26px" }} onClick={() => { this.setState({ Card_adresse: 0, table_adresse: 0 }) }}>
+              <FiSave style={{ marginRight: "10px" }} /> Enregistrer
+                </Button>
 
             <Grid container spacing={6} >
               <Grid item md={12}>
@@ -488,28 +463,7 @@ export default class EditClient extends Component {
                     m={4}
                   />
                 </Paper>
-                <form noValidate autoComplete="off">
-                  <TextField
-                    value={this.state.client_bureau}
-                    onChange={this.onchange_client_bureau}
-                    required
-                    style={{ width: "40%" }}
-                    id="standard-required"
-                    label="Bureau"
-                    variant="outlined"
-                    m={4}
-                  />
 
-                  <TextField
-                    value={this.state.client_surface}
-                    onChange={this.onchange_client_surface}
-                    style={{ width: "40%" }}
-                    id="standard-required"
-                    label="Surface"
-                    variant="outlined"
-                    m={4}
-                  />
-                </form>
 
                 <TextField
                   value={this.state.client_localisation}

@@ -14,6 +14,7 @@ import {
   Grid,
   Link,
   Input,
+  Chip,
   Paper as MuiPaper,
   InputLabel,
   CircularProgress as MuiCircularProgress,
@@ -25,9 +26,9 @@ import {
 
 import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
-import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
+import { CloudUpload as MuiCloudUpload, Label } from "@material-ui/icons";
 
-import { FiSave, FiHome, FiMap } from "react-icons/fi";
+import { FiSave, FiHome, FiMap, FiChevronsLeft, FiUploadCloud } from "react-icons/fi";
 
 import { spacing } from "@material-ui/system";
 
@@ -58,8 +59,8 @@ const CenteredContent = styled.div`
 const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
-  width: 300px;
-  height: 200px;
+  width: 100px;
+  height: 60px;
   border-radius: 8px;
   margin-top : 20px;
 
@@ -71,8 +72,8 @@ export default class CreerCompte extends Component {
       error: 0,
       pass: 0,
       loading: 0,
-      type: 2,
-      cin_img_artisan: "/static/img/avatars/avatar-1.jpg",
+      type: 5,
+      cin_img_artisan: "",
       cin_artisan: null,
       cin_coordinateur: null,
 
@@ -83,7 +84,7 @@ export default class CreerCompte extends Component {
       client_access_channel: "",
       client_type: "",
       client_commantaire: "",
-      client_libelle: "",
+      client_libelle: "Domicile",
       client_rue: "",
       client_ville: "",
       client_quartier: "",
@@ -126,6 +127,8 @@ export default class CreerCompte extends Component {
       artisan_solde_artisan: "",
       artisan_solde_saweblia: "",
       artisan_type: "",
+      artisan_satatus: "",
+      table_metier: [],
     }
 
   }
@@ -177,7 +180,22 @@ export default class CreerCompte extends Component {
   onchange_artisan_langue = (e) => { this.setState({ artisan_langue: e.target.value, }) }
   onchange_artisan_solde_artisan = (e) => { this.setState({ artisan_solde_artisan: e.target.value, }) }
   onchange_artisan_solde_saweblia = (e) => { this.setState({ artisan_solde_saweblia: e.target.value, }) }
-  onchange_artisan_artisan_type = (e) => { this.setState({ artisan_type: e.target.value }) }
+  onchange_artisan_artisan_type = (e) => { this.setState({ artisan_type: e.target.value }); this.state.table_metier.push(e.target.value); console.log("table  : ", this.state.table_metier); }
+  onchange_artisan_artisan_status = (e) => { this.setState({ artisan_satatus: e.target.value }) }
+
+
+  deletechip = (data) => {
+    var i = 0;
+    this.state.table_metier.map((datas) => {
+      if (datas == data) {
+        var Restable = this.state.table_metier.splice(i, 1);
+        this.setState({ table_metier: Restable })
+      }
+      i++
+    })
+    console.log("table : ", this.state.table_metier);
+  }
+
 
   onClick_create = () => {
     this.setState({ loading: 1 });
@@ -357,20 +375,27 @@ export default class CreerCompte extends Component {
       <div>
         <Card >
           <CardContent>
-            <div className="row">
-              <div className="column">
-                <Link component={NavLink} exact to="/"><FiHome size={20} /> Home </Link>
-                <Link component={NavLink} exact to="/Comptes/comptes">/Comptes </Link>
+
+            <Breadcrumbs style={{ marginTop: "10px" }} aria-label="Breadcrumb" mt={2}>
+              <Link component={NavLink} exact to="/">
+                <FiHome size={15} /> Dashboard
+                     </Link>
+              <Link component={NavLink} exact to="/Comptes/comptes">
+                Comptes
+                     </Link>
+              <Typography>Créer un compte</Typography>
+            </Breadcrumbs>
 
 
-                {this.state.loading == 1 ? (<div style={{ float: "right", marginBottom: "10px" }}> <CircularProgress m={2} color="secondary" /></div>) : (
-                  <Button variant="contained" color="primary" style={{ float: "right" }} onClick={() => { this.onClick_create() }}>
-                    <FiSave style={{ marginRight: "10px" }} size={20} /> Enregistrer
-                  </Button>)}
-
-              </div>
-            </div>
-
+            {this.state.loading == 1 ? (<div style={{ float: "right", marginBottom: "10px" }}> <CircularProgress m={2} color="secondary" /></div>) : (
+              <Button variant="contained" color="primary" style={{ float: "right", marginTop: "-30px" }} onClick={() => { this.onClick_create() }}>
+                <FiSave style={{ marginRight: "10px" }} /> Enregistrer
+              </Button>)}
+            <Link component={NavLink} exact to="/Comptes/comptes">
+              <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-30px" }} onClick={() => { this.onClick_create() }}>
+                <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 
@@ -383,28 +408,26 @@ export default class CreerCompte extends Component {
         </Alert>) : null}
         <Card mb={6}>
           <CardContent>
-            <Typography variant="h6" gutterBottom>
-              Créer un compte
-        </Typography>
+            <Grid item md={8}>
+              <Paper mt={3}>
+                <Select
+                  style={{ width: "40%", marginLeft: "20px", marginTop: "-30  px" }}
+                  value={this.state.type}
+                  onChange={this.OnchangeType}
+                >
 
-            <InputLabel style={{ marginLeft: "20px", marginTop: "40px" }} >Type de compte</InputLabel>
-            <Select
-              style={{ width: "50%", marginLeft: "20px", marginTop: "20px" }}
-              value={this.state.type}
-              onChange={this.OnchangeType}
-            >
+                  <MenuItem value={2}>Client</MenuItem>
+                  <MenuItem value={3}>Coordinateur</MenuItem>
+                  <MenuItem value={4}>Fournisseur</MenuItem>
+                  <MenuItem value={5}>Artisan</MenuItem>
 
-              <MenuItem value={2}>Client</MenuItem>
-              <MenuItem value={3}>Coordinateur</MenuItem>
-              <MenuItem value={4}>Fournisseur</MenuItem>
-              <MenuItem value={5}>Artisan</MenuItem>
-
-            </Select>
-
+                </Select>
+              </Paper>
+            </Grid>
 
 
             {this.state.type == 2 ? (<div>
-              <Grid container spacing={6}>
+              <Grid container spacing={6} style={{ marginTop: "5px" }}>
                 <Grid item md={12}>
                   <form noValidate autoComplete="off">
                     <TextField
@@ -439,18 +462,9 @@ export default class CreerCompte extends Component {
                       m={4}
                     />
 
-                    <TextField
-                      onChange={this.onchange_client_password}
-                      value={this.state.client_password}
-                      required
-                      style={{ width: "40%" }}
-                      id="standard-password-input"
-                      label="Password"
-                      type="password"
-                      autoComplete="current-password"
-                      variant="outlined"
-                      m={4}
-                    />
+
+
+
                   </form>
                 </Grid>
 
@@ -461,7 +475,7 @@ export default class CreerCompte extends Component {
 
 
             {this.state.type == 3 ? (<div>
-              <Grid container spacing={6}>
+              <Grid container spacing={6} style={{ marginTop: "5px" }}>
                 <Grid item md={12}>
                   <form noValidate autoComplete="off">
                     <TextField
@@ -496,18 +510,7 @@ export default class CreerCompte extends Component {
                       m={4}
                     />
 
-                    <TextField
-                      value={this.state.coordinateur_password}
-                      onChange={this.onchange_coordinateur_password}
-                      required
-                      style={{ width: "40%" }}
-                      id="standard-password-input"
-                      label="Password"
-                      type="password"
-                      autoComplete="current-password"
-                      variant="outlined"
-                      m={4}
-                    />
+
                   </form>
                 </Grid>
 
@@ -517,7 +520,7 @@ export default class CreerCompte extends Component {
 
 
             {this.state.type == 4 ? (<div>
-              <Grid container spacing={6}>
+              <Grid container spacing={6} style={{ marginTop: "5px" }}>
                 <Grid item md={12}>
                   <form noValidate autoComplete="off">
                     <TextField
@@ -552,18 +555,7 @@ export default class CreerCompte extends Component {
                       m={4}
                     />
 
-                    <TextField
-                      value={this.state.fournisseur_password}
-                      onChange={this.onchange_fournisseur_password}
-                      required
-                      style={{ width: "40%" }}
-                      id="standard-password-input"
-                      label="Password"
-                      type="password"
-                      autoComplete="current-password"
-                      variant="outlined"
-                      m={4}
-                    />
+
                   </form>
                 </Grid>
 
@@ -573,7 +565,7 @@ export default class CreerCompte extends Component {
 
 
             {this.state.type == 5 ? (<div>
-              <Grid container spacing={6}>
+              <Grid container spacing={6} style={{ marginTop: "5px" }}>
                 <Grid item md={12}>
                   <form noValidate autoComplete="off">
                     <TextField
@@ -608,39 +600,8 @@ export default class CreerCompte extends Component {
                       m={4}
                     />
 
-                    <TextField
-                      value={this.state.artisan_password}
-                      onChange={this.onchange_artisan_password}
-                      required
-                      style={{ width: "40%" }}
-                      id="standard-password-input"
-                      label="Password"
-                      type="password"
-                      autoComplete="current-password"
-                      variant="outlined"
-                      m={4}
-                    />
+
                     <Paper mt={3}>
-                      <FormControl m={2} style={{ width: "40%" }}>
-                        <InputLabel style={{ marginLeft: "20px" }}>Type d'artisan</InputLabel>
-                        <Select
-                          value={this.state.artisan_type}
-                          onChange={this.onchange_artisan_artisan_type}
-
-                          m={4}
-
-                        >
-
-                          <MenuItem value={2}>Plomberie</MenuItem>
-                          <MenuItem value={3}>Eléctricité</MenuItem>
-                          <MenuItem value={4}>Serrurerie</MenuItem>
-                          <MenuItem value={5}>Peinture</MenuItem>
-                          <MenuItem value={5}>Désinfection</MenuItem>
-                          <MenuItem value={5}>Climatisation</MenuItem>
-                          <MenuItem value={5}>Bricolage</MenuItem>
-
-                        </Select>
-                      </FormControl>
                       <FormControl m={2} style={{ width: "40%" }}>
                         <InputLabel style={{ marginLeft: "20px" }}>Métier</InputLabel>
                         <Select
@@ -651,14 +612,48 @@ export default class CreerCompte extends Component {
 
                         >
 
-                          <MenuItem value={2}>Société</MenuItem>
-                          <MenuItem value={3}>2</MenuItem>
-                          <MenuItem value={4}>auto-entrepreneur</MenuItem>
-                          <MenuItem value={5}>Artisan</MenuItem>
+                          <MenuItem value={"Plomberie"}>Plomberie</MenuItem>
+                          <MenuItem value={"Eléctricité"}>Eléctricité</MenuItem>
+                          <MenuItem value={"Serrurerie"}>Serrurerie</MenuItem>
+                          <MenuItem value={"Peinture"}>Peinture</MenuItem>
+                          <MenuItem value={"Désinfection"}>Désinfection</MenuItem>
+                          <MenuItem value={"Climatisation"}>Climatisation</MenuItem>
+                          <MenuItem value={"Bricolage"}>Bricolage</MenuItem>
 
                         </Select>
                       </FormControl>
+                      {this.state.table_metier.length != 0 ? (
+                        this.state.table_metier.map((data) => (
+                          this.state.table_metier.length <= 8 ? (<Chip key={data}
+                            style={{ marginLeft: "10px", marginTop: "20px" }}
+                            label={data}
+                            onDelete={() => { this.deletechip(data) }}
+                            m={1}
+                          />) : (<Alert mb={4} severity="error">
+                            Un artisan ne peut pas avoir plus que 8 métier
+                          </Alert>)
+                        ))
+                      ) : null}
+
+
                     </Paper>
+                    <FormControl m={2} style={{ width: "40%" }}>
+                      <InputLabel style={{ marginLeft: "20px" }}>Status professionel</InputLabel>
+                      <Select
+                        value={this.state.artisan_status}
+                        onChange={this.onchange_artisan_artisan_status}
+
+                        m={4}
+
+                      >
+
+                        <MenuItem value={2}>Société</MenuItem>
+                        <MenuItem value={3}>2</MenuItem>
+                        <MenuItem value={4}>auto-entrepreneur</MenuItem>
+                        <MenuItem value={5}>Artisan</MenuItem>
+
+                      </Select>
+                    </FormControl>
                   </form>
                 </Grid>
 
@@ -674,14 +669,14 @@ export default class CreerCompte extends Component {
             <Card mb={6}>
               <CardContent>
                 <Typography variant="h6" gutterBottom>
-                  Client info
-        </Typography>
+                  Informations détaillées
+           </Typography>
 
                 <Grid container spacing={6} >
                   <Grid item md={8}>
                     <Paper mt={3}>
                       <FormControl m={2} style={{ width: "40%" }}>
-                        <InputLabel >Access Channel</InputLabel>
+                        <InputLabel >Canal d'acquisition</InputLabel>
                         <Select
                           value={this.state.client_access_channel}
                           onChange={this.onchange_client_access_channel}
@@ -695,7 +690,7 @@ export default class CreerCompte extends Component {
                         </Select>
                       </FormControl>
                       <FormControl m={2} style={{ width: "40%", marginLeft: "20px" }}>
-                        <InputLabel >Type Client</InputLabel>
+                        <InputLabel >Catégorie</InputLabel>
                         <Select
                           value={this.state.client_type}
                           onChange={this.onchange_client_type}
@@ -714,7 +709,7 @@ export default class CreerCompte extends Component {
                         style={{ marginTop: "20px" }}
                         onChange={this.onchange_client_commantaire}
                         value={this.state.client_commantaire}
-                        label="Commantaire"
+                        label="Observations"
                         id="biography"
                         multiline={true}
                         rows={3}
@@ -734,7 +729,7 @@ export default class CreerCompte extends Component {
             <Card mb={6}>
               <CardContent>
                 <Typography variant="h6" gutterBottom>
-                  <FiMap size={20} /> Adresse d'intervention
+                  Lieux d'intervention
         </Typography>
 
                 <Grid container spacing={6} >
@@ -784,28 +779,6 @@ export default class CreerCompte extends Component {
                         m={4}
                       />
                     </Paper>
-                    <form noValidate autoComplete="off">
-                      <TextField
-                        value={this.state.client_bureau}
-                        onChange={this.onchange_client_bureau}
-                        required
-                        style={{ width: "40%" }}
-                        id="standard-required"
-                        label="Bureau"
-                        variant="outlined"
-                        m={4}
-                      />
-
-                      <TextField
-                        value={this.state.client_surface}
-                        onChange={this.onchange_client_surface}
-                        style={{ width: "40%" }}
-                        id="standard-required"
-                        label="Surface"
-                        variant="outlined"
-                        m={4}
-                      />
-                    </form>
 
                     <TextField
                       value={this.state.client_localisation}
@@ -829,7 +802,7 @@ export default class CreerCompte extends Component {
           <Card mb={6}>
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                Coordinateur info
+                Informations détaillées
         </Typography>
 
 
@@ -847,65 +820,66 @@ export default class CreerCompte extends Component {
                       m={4}
                     />
 
-                    <TextField
-                      value={this.state.coordinateur_ville}
-                      onChange={this.onchange_coordinateur_ville}
-                      style={{ width: "40%" }}
-                      id="standard-required"
-                      label="Ville"
-                      variant="outlined"
-                      m={4}
-                    />
+
+                    <FormControl m={2} style={{ width: "40%", marginLeft: "20px", marginTop: "20px" }}>
+                      <InputLabel >Ville</InputLabel>
+                      <Select
+                        value={this.state.client_ville}
+                        onChange={this.onchange_client_ville}
+
+                      >
+                        <MenuItem value={"casablnaca"}>CasaBlanca</MenuItem>
+                        <MenuItem value={"rabat"}>Rabat</MenuItem>
+                        <MenuItem value={"mohammedia"}>Mohemmadia</MenuItem>
+                      </Select>
+                    </FormControl>
 
 
                   </form>
+                  <TextField
+
+                    onChange={() => { }}
+                    required
+                    style={{ width: "40%" }}
+                    id="standard-required"
+                    label="Adresse"
+                    variant="outlined"
+                    m={4}
+                  />
+
                 </Grid>
 
               </Grid>
-
-            </CardContent>
-          </Card>
-          <Card mb={6} style={{ width: "50%" }}>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Carte identité national
-        </Typography>
-
-              <Grid container spacing={6}>
-                <Grid item md={8} style={{ float: "left" }}>
-                  <CenteredContent>
-                    <BigAvatar
-                      alt="Remy Sharp"
-                      src={this.state.cin_img_artisan}
-                    />
-                    <input
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={this.onchange_cin_atisan_image}
-                      id="raised-button-file"
-                      multiple
-                      type="file"
-                    />
-                    <label htmlFor="raised-button-file" style={{ float: "left" }}>
-                      <Button variant="contained" color="primary" style={{ marginTop: "20px" }} component="span">
-                        <CloudUpload mr={2} /> Upload
+              <BigAvatar
+                alt="Remy Sharp"
+                style={{ marginLeft: "18px" }}
+                src={this.state.cin_img_artisan}
+              />
+              <input
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={this.onchange_cin_coordinateur_image}
+                id="raised-button-file"
+                multiple
+                type="file"
+              />
+              <label htmlFor="raised-button-file" style={{ float: "left" }}>
+                <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
+                  <FiUploadCloud /> Télécharger CIN
                 </Button>
-                    </label>
-                  </CenteredContent>
-                </Grid>
-              </Grid>
-
+              </label>
 
             </CardContent>
           </Card>
+
         </div>) : null}
 
         {this.state.type == 4 ? (<div>
           <Card mb={6}>
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                Fournisseur info
-        </Typography>
+                Informations détaillées
+             </Typography>
 
 
               <Grid container spacing={6}>
@@ -941,6 +915,16 @@ export default class CreerCompte extends Component {
                       variant="outlined"
                       m={4}
                     />
+                    <TextField
+
+                      onChange={() => { }}
+                      required
+                      style={{ width: "40%" }}
+                      id="standard-required"
+                      label="Localisation"
+                      variant="outlined"
+                      m={4}
+                    />
 
                   </form>
                 </Grid>
@@ -955,7 +939,7 @@ export default class CreerCompte extends Component {
           <Card mb={6}>
             <CardContent>
               <Typography variant="h6" >
-                Artisan info
+                Informations détaillées
         </Typography>
 
 
@@ -993,69 +977,35 @@ export default class CreerCompte extends Component {
                       m={4}
                     />
 
-                    <TextField
-                      value={this.state.artisan_solde_artisan}
-                      onChange={this.onchange_artisan_solde_artisan}
-                      required
-                      style={{ width: "40%" }}
-                      id="standard-required"
-                      label="Solde Artisan "
-                      variant="outlined"
-                      m={4}
-                    />
-
-                    <TextField
-                      value={this.state.artisan_solde_saweblia}
-                      onChange={this.onchange_artisan_solde_saweblia}
-                      style={{ width: "40%" }}
-                      id="standard-required"
-                      label="Solde Saweblia"
-                      variant="outlined"
-                      m={4}
-                    />
 
 
                   </form>
                 </Grid>
 
               </Grid>
-
-            </CardContent>
-          </Card>
-
-          <Card mb={6} style={{ width: "50%" }}>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Carte identité national
-        </Typography>
-
-              <Grid container spacing={6}>
-                <Grid item md={8} style={{ float: "left" }}>
-                  <CenteredContent>
-                    <BigAvatar
-                      alt="Remy Sharp"
-                      src={this.state.cin_img_artisan}
-                    />
-                    <input
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={this.onchange_cin_atisan_image}
-                      id="raised-button-file"
-                      multiple
-                      type="file"
-                    />
-                    <label htmlFor="raised-button-file" style={{ float: "left" }}>
-                      <Button variant="contained" color="primary" style={{ marginTop: "20px" }} component="span">
-                        <CloudUpload mr={2} /> Upload
+              <BigAvatar
+                alt="Remy Sharp"
+                style={{ marginLeft: "18px" }}
+                src={this.state.cin_img_artisan}
+              />
+              <input
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={this.onchange_cin_atisan_image}
+                id="raised-button-file"
+                multiple
+                type="file"
+              />
+              <label htmlFor="raised-button-file" style={{ float: "left" }}>
+                <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
+                  <FiUploadCloud /> Télécharger CIN
                 </Button>
-                    </label>
-                  </CenteredContent>
-                </Grid>
-              </Grid>
-
+              </label>
 
             </CardContent>
           </Card>
+
+
         </div>) : null}
       </div>
     )

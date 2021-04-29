@@ -121,6 +121,8 @@ import EditClient from "../pages/Saweblia/Comptes/EditClient";
 import EditArtisan from "../pages/Saweblia/Comptes/EditArtisan";
 import CoordinateurEdit from "../pages/Saweblia/Comptes/CoordinateurEdit";
 import EditFournisseur from "../pages/Saweblia/Comptes/EditFournisseur";
+import ClientDisplay from "../pages/Saweblia/Comptes/ClientDisplay"
+import ArtisanDisplay from "../pages/Saweblia/Comptes/ArtisanDisplay"
 
 //Catalogues imports
 import Services from "../pages/Saweblia/catalogue/Display/Services";
@@ -195,6 +197,20 @@ const CompteRoutes = {
 
     },
   ]
+};
+
+const Client_Display = {
+  id: "ClientDisplay",
+  path: "/Comptes/ClientDisplay",
+  component: ClientDisplay,
+  children: null,
+};
+
+const Artisan_Display = {
+  id: "ArtisanDisplay",
+  path: "/Comptes/ArtisanDisplay",
+  component: ArtisanDisplay,
+  children: null,
 };
 
 const Client_Edit = {
@@ -649,7 +665,9 @@ export const dashboardLayoutRoutes = [
   Coordinateur_Edit,
   Fournisseur_Edit,
   Artisan_Edit,
+  Artisan_Display,
   Client_Edit,
+  Client_Display,
   CompteRoutes,
   dashboardsRoutes,
   pagesRoutes,
@@ -683,7 +701,9 @@ export const sidebarRoutes = [
   Coordinateur_Edit,
   Fournisseur_Edit,
   Artisan_Edit,
+  Artisan_Display,
   Client_Edit,
+  Client_Display,
   CompteRoutes,
   dashboardsRoutes,
   pagesRoutes,
