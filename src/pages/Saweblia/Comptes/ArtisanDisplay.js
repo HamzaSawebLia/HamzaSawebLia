@@ -93,7 +93,7 @@ export default class ArtisanDisplay extends Component {
                         </Breadcrumbs>
 
                         <Link component={NavLink} exact to="/Comptes/comptes">
-                            <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-30px" }} onClick={() => { this.onClick_create() }}>
+                            <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-30px" }} >
                                 <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
                             </Button>
                         </Link>

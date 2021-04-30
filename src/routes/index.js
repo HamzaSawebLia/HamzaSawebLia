@@ -123,6 +123,9 @@ import CoordinateurEdit from "../pages/Saweblia/Comptes/CoordinateurEdit";
 import EditFournisseur from "../pages/Saweblia/Comptes/EditFournisseur";
 import ClientDisplay from "../pages/Saweblia/Comptes/ClientDisplay"
 import ArtisanDisplay from "../pages/Saweblia/Comptes/ArtisanDisplay"
+import CoordinateurDisplay from "../pages/Saweblia/Comptes/CoordinateurDisplay"
+import FournisseurDisplay from "../pages/Saweblia/Comptes/FournisseurDisplay"
+
 
 //Catalogues imports
 import Services from "../pages/Saweblia/catalogue/Display/Services";
@@ -131,7 +134,6 @@ import Prestations from "../pages/Saweblia/catalogue/Display/Prestations"
 import Add_categorie from "../pages/Saweblia/catalogue/Add/Add_categorie"
 import Add_service from "../pages/Saweblia/catalogue/Add/Add_service";
 import Add_prestation from "../pages/Saweblia/catalogue/Add/Add_prestation"
-
 
 //Catalogues Routes
 const CatalogueRoutess = {
@@ -197,6 +199,22 @@ const CompteRoutes = {
 
     },
   ]
+};
+
+
+const Fournisseur_Display = {
+  id: "FournisseurDisplay",
+  path: "/Comptes/FournisseurDisplay",
+  component: FournisseurDisplay,
+  children: null,
+};
+
+
+const Coordinateur_Display = {
+  id: "CoordinateurDisplay",
+  path: "/Comptes/CoordinateurDisplay",
+  component: CoordinateurDisplay,
+  children: null,
 };
 
 const Client_Display = {
@@ -662,7 +680,9 @@ const protectedPageRoutes = {
 // Routes using the Dashboard layout
 export const dashboardLayoutRoutes = [
   CatalogueRoutess,
+  Fournisseur_Display,
   Coordinateur_Edit,
+  Coordinateur_Display,
   Fournisseur_Edit,
   Artisan_Edit,
   Artisan_Display,
@@ -698,7 +718,9 @@ export const protectedRoutes = [protectedPageRoutes];
 // Routes visible in the sidebar
 export const sidebarRoutes = [
   CatalogueRoutess,
+  Fournisseur_Display,
   Coordinateur_Edit,
+  Coordinateur_Display,
   Fournisseur_Edit,
   Artisan_Edit,
   Artisan_Display,

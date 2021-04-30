@@ -35,7 +35,7 @@ import {
 import { Map, Home, Save } from "react-feather";
 import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
-import { FiTrash2, FiSave, FiHome, FiEdit, FiEye, FiUpload } from "react-icons/fi";
+import { FiTrash2, FiSave, FiHome, FiEdit, FiChevronsLeft, FiUploadCloud } from "react-icons/fi";
 
 import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
 
@@ -73,8 +73,8 @@ const Alert = styled(MuiAlert)(spacing);
 
 
 const BigAvatar = styled(Avatar)`
-  width: 300px;
-  height: 200px;
+  width: 100px;
+  height: 60px;
   border-radius: 8px;
   margin-top : 20px;
 
@@ -92,7 +92,7 @@ export default class Add_prestation extends Component {
                             <div className="column">
 
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
-                                    <Link component={NavLink} exact to="/">  Dashboard </Link>
+                                    <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
                                     <Typography>Ajouter une prestation</Typography>
                                 </Breadcrumbs>
 
@@ -100,26 +100,21 @@ export default class Add_prestation extends Component {
                                     <FiSave style={{ marginRight: "10px" }} /> Enregistrer
                                     </Button>
 
+                                <Link component={NavLink} exact to="/Catalogues/Prestations">
+                                    <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-26px" }} >
+                                        <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
+                                    </Button>
+                                </Link>
+
                             </div>
                         </div>
 
                     </CardContent>
                 </Card>
 
-
-                <Divider my={6} />
-
-                <Header>
-                    <Typography variant="h3" gutterBottom align="center">
-                        Créer une nouvelle prestation
-                  </Typography>
-
-                </Header>
+                <br />
                 <Card mb={6}>
                     <CardContent>
-                        <Typography variant="h6" gutterBottom>
-                            Prestation info
-                       </Typography>
 
                         <Grid container spacing={6} >
                             <Grid item md={12}>
@@ -143,47 +138,32 @@ export default class Add_prestation extends Component {
                                     m={4}
                                 />
 
-                                <TextField
 
-                                    required
-                                    style={{ width: "40%", marginLeft: "-1px" }}
-                                    id="standard-required"
-                                    label="Prix d'achat"
-                                    variant="outlined"
-                                    m={4}
-                                />
-                                <TextField
 
-                                    required
-                                    style={{ width: "40%", marginLeft: "-1px" }}
-                                    id="standard-required"
-                                    label="Prix de vente"
-                                    variant="outlined"
-                                    m={4}
-                                />
 
 
 
                                 <Grid container spacing={6}>
                                     <Grid item md={12}>
-                                        <input list="browsers" name="browser" id="browser" placeholder="Categorie" style={{ width: "40%", padding: "2%", borderRadius: "8px", mborderColor: "#f0eeeb" }} />
+                                        <TextField
 
-                                        <datalist id="browsers">
-                                            <option value="Edge" />
-                                            <option value="Firefox" />
-                                            <option value="Chrome" />
-                                            <option value="Opera" />
-                                            <option value="Safari" />
-                                        </datalist>
-                                        <input list="testing" name="testing" id="testing" placeholder="Servie" style={{ width: "40%", padding: "2%", marginLeft: "12px", borderRadius: "8px", mborderColor: "#f0eeeb" }} />
+                                            required
+                                            style={{ width: "40%", marginLeft: "-1px" }}
+                                            id="standard-required"
+                                            label="Prix d'achat"
+                                            variant="outlined"
+                                            m={4}
+                                        />
+                                        <input list="sevices" placeholder="Servie" style={{ width: "40%", marginTop: "1.5%", padding: "1.8%", borderRadius: "8px", mborderColor: "#f0eeeb" }} />
 
-                                        <datalist id="testing">
-                                            <option value="1" />
-                                            <option value="1" />
-                                            <option value="1" />
-                                            <option value="1" />
-                                            <option value="1" />
+                                        <datalist id="sevices" style={{ marginBottom: "-20px" }} >
+                                            <option value="service 1" />
+                                            <option value="service 2" />
+                                            <option value="service 3" />
+                                            <option value="service 4" />
+                                            <option value="service 5" />
                                         </datalist>
+
                                     </Grid>
                                 </Grid>
 
@@ -191,7 +171,7 @@ export default class Add_prestation extends Component {
 
                                     <TextField
 
-
+                                        style={{ width: "75%" }}
                                         label="Commantaire"
                                         id="biography"
                                         multiline={true}
@@ -201,43 +181,30 @@ export default class Add_prestation extends Component {
                                         defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
                                     />
                                 </FormControl>
+                                <BigAvatar
+                                    alt="Remy Sharp"
+                                    style={{ marginLeft: "18px" }}
+                                    src="/static/img/avatars/avatar-1.jpg"
+                                />
+                                <input
+                                    accept="image/*"
+                                    style={{ display: "none" }}
+                                    onChange={() => { }}
+                                    id="raised-button-file"
+                                    multiple
+                                    type="file"
+                                />
+                                <label htmlFor="raised-button-file" style={{ float: "left" }}>
+                                    <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
+                                        <FiUploadCloud /> Télécharger CIN
+                                     </Button>
+                                </label>
                             </Grid>
 
                         </Grid>
                     </CardContent>
                 </Card>
-                <Card mb={6} style={{ width: "50%" }}>
-                    <CardContent>
-                        <Typography variant="h6" gutterBottom>
-                            Prestation média
-                     </Typography>
 
-                        <Grid container spacing={6}>
-                            <Grid item md={8} style={{ float: "left" }}>
-                                <CenteredContent>
-                                    <BigAvatar
-                                        alt="Remy Sharp"
-                                        src="/static/img/avatars/avatar-1.jpg"
-                                    />
-                                    <input
-                                        accept="image/*"
-                                        style={{ display: "none" }}
-                                        id="raised-button-file"
-                                        multiple
-                                        type="file"
-                                    />
-                                    <label htmlFor="raised-button-file" style={{ float: "left" }}>
-                                        <Button variant="contained" color="primary" style={{ marginTop: "20px" }} component="span">
-                                            <FiUpload style={{ marginRight: "10px" }} /> Upload
-                </Button>
-                                    </label>
-                                </CenteredContent>
-                            </Grid>
-                        </Grid>
-
-
-                    </CardContent>
-                </Card>
 
             </div>
         )

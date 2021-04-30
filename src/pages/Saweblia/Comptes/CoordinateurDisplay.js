@@ -14,6 +14,7 @@ import {
     Grid,
     Link,
     Input,
+    Chip,
     Paper as MuiPaper,
     InputLabel,
     CircularProgress as MuiCircularProgress,
@@ -33,9 +34,11 @@ import {
     RadioGroup,
 } from "@material-ui/core";
 import { Map, Home, Save } from "react-feather";
-import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
-import { FiPlus, FiSave, FiHome, FiMap, FiChevronsLeft } from "react-icons/fi";
+import { FiPlus, FiUploadCloud, FiSave, FiHome, FiMap, FiChevronsLeft } from "react-icons/fi";
+
+
+import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
 import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
 
@@ -67,8 +70,15 @@ const CenteredContent = styled.div`
 
 const Alert = styled(MuiAlert)(spacing);
 
+const BigAvatar = styled(Avatar)`
+  width: 300px;
+  height: 200px;
+  border-radius: 8px;
+  margin-top : 20px;
 
-export default class ClientDisplay extends Component {
+`;
+
+export default class CoordinateurDisplay extends Component {
     render() {
         return (
             <div>
@@ -86,22 +96,22 @@ export default class ClientDisplay extends Component {
                         </Breadcrumbs>
 
                         <Link component={NavLink} exact to="/Comptes/comptes">
-                            <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-30px" }} >
+                            <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-30px" }}>
                                 <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
                             </Button>
                         </Link>
                     </CardContent>
                 </Card>
                 <br />
-                <Card mb={6} >
+                <Card mb={6} style={{ marginTop: "40px" }}>
                     <CardContent>
-                        <Grid container spacing={6} style={{ marginTop: "5px" }}>
+
+                        <Grid container spacing={6}>
                             <Grid item md={12}>
                                 <form noValidate autoComplete="off">
                                     <TextField
                                         disabled
-
-                                        value="Client Display Nom"
+                                        value="Display coordianteur Nom"
                                         required
                                         style={{ width: "40%" }}
                                         id="standard-required"
@@ -111,9 +121,8 @@ export default class ClientDisplay extends Component {
                                     />
 
                                     <TextField
+                                        value="Display coordianteur Email"
                                         disabled
-
-                                        value="Client Display email"
                                         style={{ width: "40%" }}
                                         id="standard-required"
                                         label="Email"
@@ -122,9 +131,8 @@ export default class ClientDisplay extends Component {
                                     />
 
                                     <TextField
+                                        value="Display coordianteur téléphone"
                                         disabled
-
-                                        value="Client Display tel"
                                         required
                                         style={{ width: "40%" }}
                                         id="standard-required"
@@ -135,12 +143,10 @@ export default class ClientDisplay extends Component {
 
 
 
-
                                 </form>
                             </Grid>
 
                         </Grid>
-
                     </CardContent>
                 </Card>
                 <br />
@@ -148,109 +154,58 @@ export default class ClientDisplay extends Component {
                     <CardContent>
                         <Typography variant="h6" gutterBottom>
                             Informations détaillées
-           </Typography>
+        </Typography>
 
-                        <Grid container spacing={6} >
-                            <Grid item md={8}>
 
+
+                        <Grid container spacing={6}>
+                            <Grid item md={12}>
                                 <form noValidate autoComplete="off">
                                     <TextField
+                                        value="display coordinateur CIN"
                                         disabled
-
-                                        value="Client Display Canal d'acquisition"
                                         required
                                         style={{ width: "40%" }}
                                         id="standard-required"
-                                        label="Canal d'acquisition"
+                                        label="N° CIN"
                                         variant="outlined"
                                         m={4}
                                     />
 
                                     <TextField
                                         disabled
-
-                                        value="Client Display Catégorie"
+                                        value="display coordinateur ville"
+                                        required
                                         style={{ width: "40%" }}
                                         id="standard-required"
-                                        label="Catégorie"
+                                        label="Ville"
                                         variant="outlined"
                                         m={4}
                                     />
-
 
 
                                 </form>
+                                <TextField
+                                    disabled
+                                    value="display coordinateur adresse"
+                                    required
+                                    style={{ width: "40%" }}
+                                    id="standard-required"
+                                    label="Adresse"
+                                    variant="outlined"
+                                    m={4}
+                                />
 
-                                <FormControl fullWidth my={2} variant="outlined">
-                                    <TextField
-                                        disabled
-                                        style={{ marginTop: "20px", marginLeft: "15px" }}
-
-                                        value="Client Display observations"
-                                        label="Observations"
-                                        id="biography"
-                                        multiline={true}
-                                        rows={3}
-                                        rowsMax={4}
-                                        variant="outlined"
-                                        defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
-                                    />
-                                </FormControl>
                             </Grid>
 
                         </Grid>
+                        <BigAvatar
+                            alt="Remy Sharp"
+                            style={{ marginLeft: "18px" }}
+                            src="/static/img/avatars/avatar-1.jpg"
+                        />
 
 
-
-                    </CardContent>
-                </Card>
-                <br />
-                <Card mb={6} >
-                    <CardContent>
-                        <Typography variant="h6" gutterBottom>
-                            Lieux d'intervention
-              </Typography>
-
-                        <Table style={{ marginTop: "40px" }}>
-                            <TableHead>
-
-                                <TableRow>
-                                    <TableCell align="left" >Libelle</TableCell>
-                                    <TableCell align="left" >Ville</TableCell>
-                                    <TableCell align="left" >Quartier</TableCell>
-                                    <TableCell align="left" >Rue</TableCell>
-                                    <TableCell align="left" > </TableCell>
-
-
-                                </TableRow>
-
-                            </TableHead>
-                            <TableBody>
-
-
-
-                                <TableRow >
-                                    <TableCell style={{ width: "10%" }} align="left">libelle test</TableCell>
-                                    <TableCell align="left">Ville test</TableCell>
-                                    <TableCell align="left">Quartier test</TableCell>
-                                    <TableCell align="left">Rue Test</TableCell>
-                                    <TableCell><FiMap size={20} /></TableCell>
-                                </TableRow>
-
-
-
-                                <TablePagination
-                                    style={{ width: "200%" }}
-                                    rowsPerPageOptions={[5, 10, 25]}
-                                    component="div"
-                                    count={10}
-                                    rowsPerPage={5}
-                                    page={5}
-                                    onChangePage={() => { }}
-                                    onChangeRowsPerPage={() => { }}
-                                />
-                            </TableBody>
-                        </Table>
                     </CardContent>
                 </Card>
             </div>

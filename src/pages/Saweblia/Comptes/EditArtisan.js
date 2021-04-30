@@ -123,9 +123,20 @@ export default class EditArtisan extends Component {
   onchange_artisan_solde_saweblia = (e) => { this.setState({ artisan_solde_saweblia: e.target.value, }) }
   onchange_artisan_disponible = (e) => { this.setState({ artisan_disponible: e.target.value }) }
   onchange_cin_atisan_image = (e) => { this.setState({ cin_img_artisan: URL.createObjectURL(e.target.files[0]), cin_artisan: e.target.files[0] }) }
-  onchange_artisan_artisan_type = (e) => { this.setState({ artisan_type: e.target.value }); this.state.table_metier.push(e.target.value); console.log("table  : ", this.state.table_metier); }
   onchange_artisan_artisan_status = (e) => { this.setState({ artisan_satatus: e.target.value }) }
+  onchange_artisan_artisan_type = (e) => {
+    this.setState({ artisan_type: e.target.value });
+    var check = 0;
+    this.state.table_metier.map((data) => {
+      if (data == e.target.value) {
+        check = 1;
+      }
+    })
+    if (check == 0) {
+      this.state.table_metier.push(e.target.value);
+    }
 
+  }
   componentwork = () => {
     axios.get(`http://127.0.0.1:8000/api/artisan/artisan/${this.props.history.location.state.IdArtisan}`)
       .then((ResData) => {
@@ -178,7 +189,17 @@ export default class EditArtisan extends Component {
 
   }
 
-
+  deletechip = (data) => {
+    var i = 0;
+    var Restable = this.state.table_metier;
+    this.state.table_metier.map((datas) => {
+      if (datas == data) {
+        Restable.splice(i, 1);
+        this.setState({ table_metier: Restable })
+      }
+      i++
+    })
+  }
   render() {
     return (
       <div>
@@ -276,39 +297,42 @@ export default class EditArtisan extends Component {
 
                     </Select>
                   </FormControl>
+                  <FormControl m={2} style={{ width: "40%" }}>
+                    <InputLabel style={{ marginLeft: "20px" }}>Status professionel</InputLabel>
+                    <Select
+                      value={this.state.artisan_status}
+                      onChange={this.onchange_artisan_artisan_status}
+
+                      m={4}
+
+                    >
+
+                      <MenuItem value={2}>Société</MenuItem>
+                      <MenuItem value={3}>2</MenuItem>
+                      <MenuItem value={4}>auto-entrepreneur</MenuItem>
+                      <MenuItem value={5}>Artisan</MenuItem>
+
+                    </Select>
+                  </FormControl>
+
+
+
+
+                </Paper>
+                <Paper>
                   {this.state.table_metier.length != 0 ? (
                     this.state.table_metier.map((data) => (
-                      this.state.table_metier.length <= 8 ? (<Chip
-                        style={{ marginLeft: "10px", marginTop: "20px" }}
+                      this.state.table_metier.length <= 8 ? (<Chip key={data}
+                        style={{ marginLeft: "15px", marginTop: "20px" }}
                         label={data}
-                        onDelete={() => { }}
+                        onDelete={() => { this.deletechip(data) }}
                         m={1}
                       />) : (<Alert mb={4} severity="error">
                         Un artisan ne peut pas avoir plus que 8 métier
                       </Alert>)
                     ))
                   ) : null}
-
-
                 </Paper>
-                <FormControl m={2} style={{ width: "40%" }}>
-                  <InputLabel style={{ marginLeft: "20px" }}>Status professionel</InputLabel>
-                  <Select
-                    value={this.state.artisan_status}
-                    onChange={this.onchange_artisan_artisan_status}
-
-                    m={4}
-
-                  >
-
-                    <MenuItem value={2}>Société</MenuItem>
-                    <MenuItem value={3}>2</MenuItem>
-                    <MenuItem value={4}>auto-entrepreneur</MenuItem>
-                    <MenuItem value={5}>Artisan</MenuItem>
-
-                  </Select>
-                </FormControl>
-
 
 
               </Grid>

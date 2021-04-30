@@ -5,6 +5,9 @@ import axios from "axios";
 
 import {
   Avatar,
+  Checkbox,
+  FormLabel,
+  FormControlLabel,
   Breadcrumbs as MuiBreadcrumbs,
   Button as MuiButton,
   Card as MuiCard,
@@ -72,7 +75,7 @@ export default class CreerCompte extends Component {
       error: 0,
       pass: 0,
       loading: 0,
-      type: 5,
+      type: 4,
       cin_img_artisan: "",
       cin_artisan: null,
       cin_coordinateur: null,
@@ -112,8 +115,11 @@ export default class CreerCompte extends Component {
       fournisseur_contact: "",
       fournisseur_ville: "",
       fournisseur_adresse: "",
-
-
+      fournisseur_zone: "",
+      fournisseur_univers: "",
+      fournisseur_delai: "",
+      fournisseur_ouvert: false,
+      table_univers: [],
 
 
 
@@ -170,6 +176,23 @@ export default class CreerCompte extends Component {
   onchange_fournisseur_ville = (e) => { this.setState({ fournisseur_ville: e.target.value, }) }
   onchange_fournisseur_nom_contact = (e) => { this.setState({ fournisseur_contact: e.target.value, }) }
   onchange_fournisseur_adresse = (e) => { this.setState({ fournisseur_adresse: e.target.value, }) }
+  onchange_fournisseur_ouvert = (e) => { if (this.state.fournisseur_ouvert == false) { this.setState({ fournisseur_ouvert: true }) } else { this.setState({ fournisseur_ouvert: false }) } }
+  onchange_fournisseur_delai = (e) => { this.setState({ fournisseur_delai: e.target.value }) }
+  onchange_fournisseur_zone = (e) => { this.setState({ fournisseur_zone: e.target.value }) }
+  onchange_fournisseur_univers = (e) => {
+    console.log("i am here ", e.target.value);
+    this.setState({ fournisseur_univers: e.target.value });
+    var check = 0;
+    this.state.table_univers.map((data) => {
+      if (data == e.target.value) {
+        check = 1;
+      }
+    })
+    if (check == 0) {
+      this.state.table_univers.push(e.target.value);
+    }
+
+  }
 
   onchange_artisan_name = (e) => { this.setState({ artisan_name: e.target.value, }) }
   onchange_artisan_email = (e) => { this.setState({ artisan_email: e.target.value, }) }
@@ -180,20 +203,43 @@ export default class CreerCompte extends Component {
   onchange_artisan_langue = (e) => { this.setState({ artisan_langue: e.target.value, }) }
   onchange_artisan_solde_artisan = (e) => { this.setState({ artisan_solde_artisan: e.target.value, }) }
   onchange_artisan_solde_saweblia = (e) => { this.setState({ artisan_solde_saweblia: e.target.value, }) }
-  onchange_artisan_artisan_type = (e) => { this.setState({ artisan_type: e.target.value }); this.state.table_metier.push(e.target.value); console.log("table  : ", this.state.table_metier); }
   onchange_artisan_artisan_status = (e) => { this.setState({ artisan_satatus: e.target.value }) }
 
+  onchange_artisan_artisan_type = (e) => {
+    this.setState({ artisan_type: e.target.value });
+    var check = 0;
+    this.state.table_metier.map((data) => {
+      if (data == e.target.value) {
+        check = 1;
+      }
+    })
+    if (check == 0) {
+      this.state.table_metier.push(e.target.value);
+    }
+
+  }
+  deletechipunivers = (data) => {
+    var i = 0;
+    var Restable = this.state.table_univers;
+    this.state.table_univers.map((datas) => {
+      if (datas == data) {
+        Restable.splice(i, 1);
+        this.setState({ table_univers: Restable })
+      }
+      i++
+    })
+  }
 
   deletechip = (data) => {
     var i = 0;
+    var Restable = this.state.table_metier;
     this.state.table_metier.map((datas) => {
       if (datas == data) {
-        var Restable = this.state.table_metier.splice(i, 1);
+        Restable.splice(i, 1);
         this.setState({ table_metier: Restable })
       }
       i++
     })
-    console.log("table : ", this.state.table_metier);
   }
 
 
@@ -392,7 +438,7 @@ export default class CreerCompte extends Component {
                 <FiSave style={{ marginRight: "10px" }} /> Enregistrer
               </Button>)}
             <Link component={NavLink} exact to="/Comptes/comptes">
-              <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-30px" }} onClick={() => { this.onClick_create() }}>
+              <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-30px" }}>
                 <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
               </Button>
             </Link>
@@ -524,36 +570,71 @@ export default class CreerCompte extends Component {
                 <Grid item md={12}>
                   <form noValidate autoComplete="off">
                     <TextField
-                      value={this.state.fournisseur_name}
-                      onChange={this.onchange_fournisseur_name}
+                      value=""
+                      onChange={() => { }}
                       required
                       style={{ width: "40%" }}
                       id="standard-required"
-                      label="Nom"
+                      label="Raison sociale "
                       variant="outlined"
                       m={4}
                     />
 
                     <TextField
-                      value={this.state.fournisseur_email}
-                      onChange={this.onchange_fournisseur_email}
+                      value=""
+                      onChange={() => { }}
+                      required
                       style={{ width: "40%" }}
                       id="standard-required"
-                      label="Email"
+                      label="Année de création"
+                      variant="outlined"
+                      m={4}
+                    />
+                    <TextField
+                      value=""
+                      onChange={() => { }}
+                      required
+                      style={{ width: "40%" }}
+                      id="standard-required"
+                      label="Capital social"
                       variant="outlined"
                       m={4}
                     />
 
                     <TextField
-                      value={this.state.fournisseur_telephone}
-                      onChange={this.onchange_fournisseur_telephone}
+                      value=""
+                      onChange={() => { }}
                       required
                       style={{ width: "40%" }}
                       id="standard-required"
-                      label="Téléphone"
+                      label="R.C."
                       variant="outlined"
                       m={4}
                     />
+
+                    <TextField
+                      value=""
+                      onChange={() => { }}
+                      required
+                      style={{ width: "40%" }}
+                      id="standard-required"
+                      label="I.C.E."
+                      variant="outlined"
+                      m={4}
+                    />
+
+                    <TextField
+                      value=""
+                      onChange={() => { }}
+                      required
+                      style={{ width: "40%" }}
+                      id="standard-required"
+                      label="Gérant"
+                      variant="outlined"
+                      m={4}
+                    />
+
+
 
 
                   </form>
@@ -622,10 +703,30 @@ export default class CreerCompte extends Component {
 
                         </Select>
                       </FormControl>
+
+                      <FormControl m={2} style={{ width: "40%" }}>
+                        <InputLabel style={{ marginLeft: "20px" }}>Status professionel</InputLabel>
+                        <Select
+                          value={this.state.artisan_status}
+                          onChange={this.onchange_artisan_artisan_status}
+
+                          m={4}
+
+                        >
+
+                          <MenuItem value={2}>Société</MenuItem>
+                          <MenuItem value={3}>2</MenuItem>
+                          <MenuItem value={4}>auto-entrepreneur</MenuItem>
+                          <MenuItem value={5}>Artisan</MenuItem>
+
+                        </Select>
+                      </FormControl>
+                    </Paper>
+                    <Paper mt={3}>
                       {this.state.table_metier.length != 0 ? (
                         this.state.table_metier.map((data) => (
                           this.state.table_metier.length <= 8 ? (<Chip key={data}
-                            style={{ marginLeft: "10px", marginTop: "20px" }}
+                            style={{ marginLeft: "15px", marginTop: "20px" }}
                             label={data}
                             onDelete={() => { this.deletechip(data) }}
                             m={1}
@@ -634,26 +735,8 @@ export default class CreerCompte extends Component {
                           </Alert>)
                         ))
                       ) : null}
-
-
                     </Paper>
-                    <FormControl m={2} style={{ width: "40%" }}>
-                      <InputLabel style={{ marginLeft: "20px" }}>Status professionel</InputLabel>
-                      <Select
-                        value={this.state.artisan_status}
-                        onChange={this.onchange_artisan_artisan_status}
 
-                        m={4}
-
-                      >
-
-                        <MenuItem value={2}>Société</MenuItem>
-                        <MenuItem value={3}>2</MenuItem>
-                        <MenuItem value={4}>auto-entrepreneur</MenuItem>
-                        <MenuItem value={5}>Artisan</MenuItem>
-
-                      </Select>
-                    </FormControl>
                   </form>
                 </Grid>
 
@@ -891,10 +974,33 @@ export default class CreerCompte extends Component {
                       required
                       style={{ width: "40%" }}
                       id="standard-required"
-                      label="Nom de contact "
+                      label="Personne à contacter "
                       variant="outlined"
                       m={4}
                     />
+
+                    <TextField
+                      value={this.state.fournisseur_telephone}
+                      onChange={this.onchange_fournisseur_telephone}
+                      required
+                      style={{ width: "40%" }}
+                      id="standard-required"
+                      label="Tél"
+                      variant="outlined"
+                      m={4}
+                    />
+
+
+                    <TextField
+                      value={this.state.fournisseur_email}
+                      onChange={this.onchange_fournisseur_email}
+                      style={{ width: "40%" }}
+                      id="standard-required"
+                      label="Email"
+                      variant="outlined"
+                      m={4}
+                    />
+
 
                     <TextField
                       value={this.state.fournisseur_ville}
@@ -927,6 +1033,101 @@ export default class CreerCompte extends Component {
                     />
 
                   </form>
+
+                  <Paper mt={3}>
+
+                    <FormControl m={2} style={{ width: "40%" }}>
+                      <InputLabel style={{ marginLeft: "20px" }}>Délai de paiement</InputLabel>
+                      <Select
+                        value={this.state.fournisseur_delai}
+                        onChange={this.onchange_fournisseur_delai}
+
+                        m={4}
+
+                      >
+
+                        <MenuItem value={2}>Acun délai</MenuItem>
+                        <MenuItem value={3}>30 jours</MenuItem>
+                        <MenuItem value={4}>45 jours</MenuItem>
+                        <MenuItem value={5}>60 jours</MenuItem>
+                        <MenuItem value={5}>90 jours</MenuItem>
+                      </Select>
+                    </FormControl>
+
+                    <FormControl style={{ marginLeft: "30px" }} component="fieldset">
+                      <FormLabel component="legend">Compte ouvert  </FormLabel>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={this.state.fournisseur_ouvert}
+                            onChange={this.onchange_fournisseur_ouvert}
+
+                          />
+                        }
+
+                      />
+                    </FormControl>
+
+
+                  </Paper>
+
+
+                  <Paper mt={3}>
+
+                    <FormControl m={2} style={{ width: "40%" }}>
+                      <InputLabel style={{ marginLeft: "20px" }}>Zone</InputLabel>
+                      <Select
+                        value={this.state.fournisseur_zone}
+                        onChange={this.onchange_fournisseur_zone}
+
+                        m={4}
+
+                      >
+
+                        <MenuItem value={2}>Zone 1</MenuItem>
+                        <MenuItem value={3}>Zone 2</MenuItem>
+                        <MenuItem value={4}>Zone 3</MenuItem>
+                        <MenuItem value={5}>Zone 4  </MenuItem>
+
+                      </Select>
+                    </FormControl>
+
+                    <FormControl m={2} style={{ width: "40%" }}>
+                      <InputLabel style={{ marginLeft: "20px" }}>Univers </InputLabel>
+                      <Select
+                        value={this.state.fournisseur_univers}
+                        onChange={this.onchange_fournisseur_univers}
+
+                        m={4}
+
+                      >
+
+                        <MenuItem value={"Plomberie"}>Plomberie</MenuItem>
+                        <MenuItem value={"Eléctricité"}>Eléctricité</MenuItem>
+                        <MenuItem value={"Serrurerie"}>Serrurerie</MenuItem>
+                        <MenuItem value={"Peinture"}>Peinture</MenuItem>
+                        <MenuItem value={"Désinfection"}>Désinfection</MenuItem>
+                        <MenuItem value={"Climatisation"}>Climatisation</MenuItem>
+                        <MenuItem value={"Bricolage"}>Bricolage</MenuItem>
+
+                      </Select>
+                    </FormControl>
+
+
+                  </Paper>
+
+                  <Paper mt={3}>
+                    {this.state.table_univers.length != 0 ? (
+                      this.state.table_univers.map((data) => (
+                        <Chip key={data}
+                          style={{ marginLeft: "15px", marginTop: "20px" }}
+                          label={data}
+                          onDelete={() => { this.deletechipunivers(data) }}
+                          m={1}
+                        />
+                      ))
+                    ) : null}
+                  </Paper>
                 </Grid>
 
               </Grid>

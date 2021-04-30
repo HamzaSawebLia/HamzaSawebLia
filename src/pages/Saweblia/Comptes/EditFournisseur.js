@@ -5,6 +5,9 @@ import axios from "axios";
 
 import {
   Avatar,
+  Checkbox,
+  FormLabel,
+  FormControlLabel,
   Breadcrumbs as MuiBreadcrumbs,
   Button as MuiButton,
   Card as MuiCard,
@@ -14,6 +17,7 @@ import {
   Grid,
   Link,
   Input,
+  Chip,
   Paper as MuiPaper,
   InputLabel,
   CircularProgress as MuiCircularProgress,
@@ -73,6 +77,11 @@ export default class EditFournisseur extends Component {
       fournisseur_contact: "",
       fournisseur_ville: "",
       fournisseur_adresse: "",
+      fournisseur_zone: "",
+      fournisseur_univers: "",
+      fournisseur_delai: "",
+      fournisseur_ouvert: false,
+      table_univers: [],
 
     }
 
@@ -83,6 +92,35 @@ export default class EditFournisseur extends Component {
   onchange_fournisseur_ville = (e) => { this.setState({ fournisseur_ville: e.target.value, }) }
   onchange_fournisseur_nom_contact = (e) => { this.setState({ fournisseur_contact: e.target.value, }) }
   onchange_fournisseur_adresse = (e) => { this.setState({ fournisseur_adresse: e.target.value, }) }
+  onchange_fournisseur_ouvert = (e) => { if (this.state.fournisseur_ouvert == false) { this.setState({ fournisseur_ouvert: true }) } else { this.setState({ fournisseur_ouvert: false }) } }
+  onchange_fournisseur_delai = (e) => { this.setState({ fournisseur_delai: e.target.value }) }
+  onchange_fournisseur_zone = (e) => { this.setState({ fournisseur_zone: e.target.value }) }
+  onchange_fournisseur_univers = (e) => {
+    console.log("i am here ", e.target.value);
+    this.setState({ fournisseur_univers: e.target.value });
+    var check = 0;
+    this.state.table_univers.map((data) => {
+      if (data == e.target.value) {
+        check = 1;
+      }
+    })
+    if (check == 0) {
+      this.state.table_univers.push(e.target.value);
+    }
+
+  }
+
+  deletechipunivers = (data) => {
+    var i = 0;
+    var Restable = this.state.table_univers;
+    this.state.table_univers.map((datas) => {
+      if (datas == data) {
+        Restable.splice(i, 1);
+        this.setState({ table_univers: Restable })
+      }
+      i++
+    })
+  }
 
   componentDidMount = () => {
     axios.get(`http://127.0.0.1:8000/api/fournisseur/fournisseur/${this.props.history.location.state.IdFournisseur}`)
@@ -168,36 +206,71 @@ export default class EditFournisseur extends Component {
               <Grid item md={12}>
                 <form noValidate autoComplete="off">
                   <TextField
-                    value={this.state.fournisseur_name}
-                    onChange={this.onchange_fournisseur_name}
+                    value=""
+                    onChange={() => { }}
                     required
                     style={{ width: "40%" }}
                     id="standard-required"
-                    label="Nom"
+                    label="Raison sociale "
                     variant="outlined"
                     m={4}
                   />
 
                   <TextField
-                    value={this.state.fournisseur_email}
-                    onChange={this.onchange_fournisseur_email}
+                    value=""
+                    onChange={() => { }}
+                    required
                     style={{ width: "40%" }}
                     id="standard-required"
-                    label="Email"
+                    label="Année de création"
+                    variant="outlined"
+                    m={4}
+                  />
+                  <TextField
+                    value=""
+                    onChange={() => { }}
+                    required
+                    style={{ width: "40%" }}
+                    id="standard-required"
+                    label="Capital social"
                     variant="outlined"
                     m={4}
                   />
 
                   <TextField
-                    value={this.state.fournisseur_telephone}
-                    onChange={this.onchange_fournisseur_telephone}
+                    value=""
+                    onChange={() => { }}
                     required
                     style={{ width: "40%" }}
                     id="standard-required"
-                    label="Téléphone"
+                    label="R.C."
                     variant="outlined"
                     m={4}
                   />
+
+                  <TextField
+                    value=""
+                    onChange={() => { }}
+                    required
+                    style={{ width: "40%" }}
+                    id="standard-required"
+                    label="I.C.E."
+                    variant="outlined"
+                    m={4}
+                  />
+
+                  <TextField
+                    value=""
+                    onChange={() => { }}
+                    required
+                    style={{ width: "40%" }}
+                    id="standard-required"
+                    label="Gérant"
+                    variant="outlined"
+                    m={4}
+                  />
+
+
 
 
                 </form>
@@ -212,7 +285,6 @@ export default class EditFournisseur extends Component {
               Informations détaillées
         </Typography>
 
-
             <Grid container spacing={6}>
               <Grid item md={12}>
                 <form noValidate autoComplete="off">
@@ -222,10 +294,33 @@ export default class EditFournisseur extends Component {
                     required
                     style={{ width: "40%" }}
                     id="standard-required"
-                    label="Nom de contact "
+                    label="Personne à contacter "
                     variant="outlined"
                     m={4}
                   />
+
+                  <TextField
+                    value={this.state.fournisseur_telephone}
+                    onChange={this.onchange_fournisseur_telephone}
+                    required
+                    style={{ width: "40%" }}
+                    id="standard-required"
+                    label="Tél"
+                    variant="outlined"
+                    m={4}
+                  />
+
+
+                  <TextField
+                    value={this.state.fournisseur_email}
+                    onChange={this.onchange_fournisseur_email}
+                    style={{ width: "40%" }}
+                    id="standard-required"
+                    label="Email"
+                    variant="outlined"
+                    m={4}
+                  />
+
 
                   <TextField
                     value={this.state.fournisseur_ville}
@@ -246,7 +341,6 @@ export default class EditFournisseur extends Component {
                     variant="outlined"
                     m={4}
                   />
-
                   <TextField
 
                     onChange={() => { }}
@@ -257,11 +351,106 @@ export default class EditFournisseur extends Component {
                     variant="outlined"
                     m={4}
                   />
+
                 </form>
+
+                <Paper mt={3}>
+
+                  <FormControl m={2} style={{ width: "40%" }}>
+                    <InputLabel style={{ marginLeft: "20px" }}>Délai de paiement</InputLabel>
+                    <Select
+                      value={this.state.fournisseur_delai}
+                      onChange={this.onchange_fournisseur_delai}
+
+                      m={4}
+
+                    >
+
+                      <MenuItem value={2}>Acun délai</MenuItem>
+                      <MenuItem value={3}>30 jours</MenuItem>
+                      <MenuItem value={4}>45 jours</MenuItem>
+                      <MenuItem value={5}>60 jours</MenuItem>
+                      <MenuItem value={5}>90 jours</MenuItem>
+                    </Select>
+                  </FormControl>
+
+                  <FormControl style={{ marginLeft: "30px" }} component="fieldset">
+                    <FormLabel component="legend">Compte ouvert  </FormLabel>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={this.state.fournisseur_ouvert}
+                          onChange={this.onchange_fournisseur_ouvert}
+
+                        />
+                      }
+
+                    />
+                  </FormControl>
+
+
+                </Paper>
+
+
+                <Paper mt={3}>
+
+                  <FormControl m={2} style={{ width: "40%" }}>
+                    <InputLabel style={{ marginLeft: "20px" }}>Zone</InputLabel>
+                    <Select
+                      value={this.state.fournisseur_zone}
+                      onChange={this.onchange_fournisseur_zone}
+
+                      m={4}
+
+                    >
+
+                      <MenuItem value={2}>Zone 1</MenuItem>
+                      <MenuItem value={3}>Zone 2</MenuItem>
+                      <MenuItem value={4}>Zone 3</MenuItem>
+                      <MenuItem value={5}>Zone 4  </MenuItem>
+
+                    </Select>
+                  </FormControl>
+
+                  <FormControl m={2} style={{ width: "40%" }}>
+                    <InputLabel style={{ marginLeft: "20px" }}>Univers </InputLabel>
+                    <Select
+                      value={this.state.fournisseur_univers}
+                      onChange={this.onchange_fournisseur_univers}
+
+                      m={4}
+
+                    >
+
+                      <MenuItem value={"Plomberie"}>Plomberie</MenuItem>
+                      <MenuItem value={"Eléctricité"}>Eléctricité</MenuItem>
+                      <MenuItem value={"Serrurerie"}>Serrurerie</MenuItem>
+                      <MenuItem value={"Peinture"}>Peinture</MenuItem>
+                      <MenuItem value={"Désinfection"}>Désinfection</MenuItem>
+                      <MenuItem value={"Climatisation"}>Climatisation</MenuItem>
+                      <MenuItem value={"Bricolage"}>Bricolage</MenuItem>
+
+                    </Select>
+                  </FormControl>
+
+
+                </Paper>
+
+                <Paper mt={3}>
+                  {this.state.table_univers.length != 0 ? (
+                    this.state.table_univers.map((data) => (
+                      <Chip key={data}
+                        style={{ marginLeft: "15px", marginTop: "20px" }}
+                        label={data}
+                        onDelete={() => { this.deletechipunivers(data) }}
+                        m={1}
+                      />
+                    ))
+                  ) : null}
+                </Paper>
               </Grid>
 
             </Grid>
-
           </CardContent>
         </Card>
 

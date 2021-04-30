@@ -51,77 +51,67 @@ export default class Categories extends Component {
         return (
             <React.Fragment>
                 <Helmet title="Services" />
-                <Typography variant="h3" gutterBottom display="inline">
-                    Catégories
-                </Typography>
 
-                <Breadcrumbs aria-label="Breadcrumb" mt={2}>
-                    <Link component={NavLink} exact to="/">
-                        Dashboard
+                <Card >
+                    <CardContent>
+                        <Breadcrumbs aria-label="Breadcrumb" mt={2}>
+                            <Link component={NavLink} exact to="/">
+                                <FiHome size={15} />     Dashboard
                    </Link>
-                    <Typography>Catégories</Typography>
-                </Breadcrumbs>
-                <Link component={NavLink} exact to="/Catalogues/Add_categorie"><Button style={{ float: "right", marginTop: "-53px" }} variant="contained" color="secondary" m={1}> <FiPlus style={{ marginRight: "10px" }} /> <span> </span>Ajouter  </Button> </Link>
+                            <Typography>Catégories</Typography>
+                        </Breadcrumbs>
+                        <Link component={NavLink} exact to="/Catalogues/Add_categorie"><Button style={{ float: "right", marginTop: "-28px" }} variant="contained" color="secondary" m={1}> <FiPlus style={{ marginRight: "10px" }} /> <span> </span>Ajouter  </Button> </Link>
+                    </CardContent>
+                </Card>
 
-                <Divider my={6} />
+                <br />
 
-                <Header>
-                    <Typography variant="h3" gutterBottom align="center">
-                        Tous les  Catégories de SawebLia
-                  </Typography>
-
-                </Header>
-
-                <Grid container justify="center">
-                    <Grid item xs={12} lg={10}>
-                        <Grid container spacing={6} alignItems="flex-end">
-                            <Card mb={6}>
-                                <CardContent pb={1}>
-                                    <Typography variant="h6" gutterBottom>
-                                        Catégories
+                <Card mb={6}>
+                    <CardContent pb={1}>
+                        <Typography variant="h6" gutterBottom>
+                            Catégories
                                      </Typography>
 
-                                </CardContent>
-                                <Paper>
-                                    <Table>
-                                        <TableHead>
+                    </CardContent>
+                    <Paper>
+                        <Table>
+                            <TableHead>
 
-                                            <TableRow>
-                                                <TableCell align="left"> Libelle </TableCell>
-                                                <TableCell align="left"> Description </TableCell>
-                                                <TableCell align="left"> Actions </TableCell>
+                                <TableRow>
+                                    <TableCell align="left"> Libelle </TableCell>
+                                    <TableCell align="left"> Description </TableCell>
+                                    <TableCell align="left">  </TableCell>
 
-                                            </TableRow>
+                                </TableRow>
 
-                                        </TableHead>
-                                        <TableBody>
-
-
-
-                                            <TableRow >
-                                                <TableCell align="left">Libelle Service</TableCell>
-                                                <TableCell align="left">Description Service</TableCell>
-                                                <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /></TableCell>
-                                            </TableRow>
+                            </TableHead>
+                            <TableBody>
 
 
 
-                                            <TablePagination
-                                                rowsPerPageOptions={[5, 10, 25]}
-                                                component="div"
-                                                count={10}
-                                                rowsPerPage={5}
-                                                page={5}
-                                                onChangePage={() => { }}
-                                                onChangeRowsPerPage={() => { }}
-                                            />
-                                        </TableBody>
-                                    </Table>
-                                </Paper>
-                            </Card>
-                        </Grid>
-                    </Grid>
-                </Grid>
+                                <TableRow >
+                                    <TableCell align="left" style={{ width: "30%" }}>Libelle Service</TableCell>
+                                    <TableCell align="left">Description Service</TableCell>
+                                    <TableCell align="left" ><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /></TableCell>
+                                </TableRow>
+
+
+
+                                <TablePagination
+                                    style={{ width: "200%" }}
+                                    rowsPerPageOptions={[5, 10, 25]}
+                                    component="div"
+                                    count={10}
+                                    rowsPerPage={5}
+                                    page={5}
+                                    onChangePage={() => { }}
+                                    onChangeRowsPerPage={() => { }}
+                                />
+                            </TableBody>
+                        </Table>
+                    </Paper>
+                </Card>
+
             </React.Fragment>
         )
     }

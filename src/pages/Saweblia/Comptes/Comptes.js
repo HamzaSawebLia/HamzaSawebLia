@@ -209,7 +209,7 @@ export default class Comptes extends Component {
                     <TableCell align="left">Coordi Tél</TableCell>
                     <TableCell align="left">Coordi CIN</TableCell>
                     <TableCell align="left">Coordi ville</TableCell>
-                    <TableCell align="left"><Link component={NavLink} exact to={{ pathname: "/Comptes/Edit_coordinateur", state: { IdClient: "1" } }}> <Button><FiEdit size={20} /></Button></Link> <Link component={NavLink} exact to={{ pathname: "/Comptes/Edit_Fournisseur", state: { IdFournisseur: "1" } }}> <Button style={{ marginLeft: "-30px" }}><FiEye size={20} /></Button></Link></TableCell>
+                    <TableCell align="left"><Link component={NavLink} exact to={{ pathname: "/Comptes/Edit_coordinateur", state: { IdClient: "1" } }}> <Button><FiEdit size={20} /></Button></Link> <Link component={NavLink} exact to={{ pathname: "/Comptes/CoordinateurDisplay", state: { IdFournisseur: "1" } }}> <Button style={{ marginLeft: "-30px" }}><FiEye size={20} /></Button></Link></TableCell>
 
                   </TableRow>
                 ) : null
@@ -222,7 +222,7 @@ export default class Comptes extends Component {
                     <TableCell align="left">Tél fr</TableCell>
                     <TableCell align="left">Ville fr</TableCell>
                     <TableCell align="left">Adresse fr</TableCell>
-                    <TableCell align="left"><Link component={NavLink} exact to={{ pathname: "/Comptes/Edit_Fournisseur", state: { IdFournisseur: "1" } }}> <Button><FiEdit size={20} /></Button></Link> <Link component={NavLink} exact to={{ pathname: "/Comptes/Edit_Fournisseur", state: { IdFournisseur: "1" } }}> <Button style={{ marginLeft: "-30px" }}><FiEye size={20} /></Button></Link></TableCell>
+                    <TableCell align="left"><Link component={NavLink} exact to={{ pathname: "/Comptes/Edit_Fournisseur", state: { IdFournisseur: "1" } }}> <Button><FiEdit size={20} /></Button></Link> <Link component={NavLink} exact to={{ pathname: "/Comptes/FournisseurDisplay", state: { IdFournisseur: "1" } }}> <Button style={{ marginLeft: "-30px" }}><FiEye size={20} /></Button></Link></TableCell>
 
 
                   </TableRow>

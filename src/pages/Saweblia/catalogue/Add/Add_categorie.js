@@ -35,7 +35,7 @@ import {
 import { Map, Home, Save } from "react-feather";
 import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
-import { FiTrash2, FiSave, FiHome, FiEdit, FiEye, FiUpload } from "react-icons/fi";
+import { FiTrash2, FiSave, FiHome, FiUploadCloud, FiEdit, FiEye, FiChevronsLeft } from "react-icons/fi";
 
 import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
 
@@ -73,8 +73,8 @@ const Alert = styled(MuiAlert)(spacing);
 
 
 const BigAvatar = styled(Avatar)`
-  width: 300px;
-  height: 200px;
+  width: 100px;
+  height: 60px;
   border-radius: 8px;
   margin-top : 20px;
 
@@ -90,34 +90,28 @@ export default class Add_categorie extends Component {
                             <div className="column">
 
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
-                                    <Link component={NavLink} exact to="/">  Dashboard </Link>
+                                    <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
                                     <Typography>Ajouter une catégorie</Typography>
                                 </Breadcrumbs>
 
                                 <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
                                     <FiSave style={{ marginRight: "10px" }} /> Enregistrer
                                     </Button>
-
+                                <Link component={NavLink} exact to="/Catalogues/Categories">
+                                    <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-26px" }} >
+                                        <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
 
                     </CardContent>
                 </Card>
 
+                <br />
 
-                <Divider my={6} />
-
-                <Header>
-                    <Typography variant="h3" gutterBottom align="center">
-                        Créer une nouvelle catégorie
-                  </Typography>
-
-                </Header>
                 <Card mb={6}>
                     <CardContent>
-                        <Typography variant="h6" gutterBottom>
-                            Catégorie info
-                       </Typography>
 
                         <Grid container spacing={6} >
                             <Grid item md={8}>
@@ -145,43 +139,31 @@ export default class Add_categorie extends Component {
                                         defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
                                     />
                                 </FormControl>
+                                <BigAvatar
+                                    alt="Remy Sharp"
+                                    style={{ marginLeft: "18px" }}
+                                    src="/static/img/avatars/avatar-1.jpg"
+                                />
+                                <input
+                                    accept="image/*"
+                                    style={{ display: "none" }}
+                                    onChange={() => { }}
+                                    id="raised-button-file"
+                                    multiple
+                                    type="file"
+                                />
+                                <label htmlFor="raised-button-file" style={{ float: "left" }}>
+                                    <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
+                                        <FiUploadCloud /> Télécharger CIN
+                                     </Button>
+                                </label>
                             </Grid>
 
                         </Grid>
-                    </CardContent>
-                </Card>
-                <Card mb={6} style={{ width: "50%" }}>
-                    <CardContent>
-                        <Typography variant="h6" gutterBottom>
-                            Catégorie média
-                     </Typography>
-
-                        <Grid container spacing={6}>
-                            <Grid item md={8} style={{ float: "left" }}>
-                                <CenteredContent>
-                                    <BigAvatar
-                                        alt="Remy Sharp"
-                                        src="/static/img/avatars/avatar-1.jpg"
-                                    />
-                                    <input
-                                        accept="image/*"
-                                        style={{ display: "none" }}
-                                        id="raised-button-file"
-                                        multiple
-                                        type="file"
-                                    />
-                                    <label htmlFor="raised-button-file" style={{ float: "left" }}>
-                                        <Button variant="contained" color="primary" style={{ marginTop: "20px" }} component="span">
-                                            <FiUpload style={{ marginRight: "10px" }} /> Upload
-                </Button>
-                                    </label>
-                                </CenteredContent>
-                            </Grid>
-                        </Grid>
-
 
                     </CardContent>
                 </Card>
+
 
                 <Card mb={6}>
                     <CardContent pb={1}>
