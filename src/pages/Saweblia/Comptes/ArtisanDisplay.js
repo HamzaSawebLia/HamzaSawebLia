@@ -89,6 +89,9 @@ export default class ArtisanDisplay extends Component {
                             <Link component={NavLink} exact to="/Comptes/comptes">
                                 Comptes
                      </Link>
+                            <Link component={NavLink} exact to="/Comptes/comptes">
+                                Artisan
+                              </Link>
                             <Typography>Afficher</Typography>
                         </Breadcrumbs>
 
@@ -150,25 +153,40 @@ export default class ArtisanDisplay extends Component {
 
 
                                 </form>
-                                <Paper mt={3}>
+                                <Paper mt={3} style={{ width: "50%" }}>
                                     <Chip
                                         label="Test metier 1"
-                                        style={{ marginLeft: "10px" }}
+                                        style={{ marginLeft: "10px", marginTop: "20px" }}
                                         m={1}
                                     />
                                     <Chip
                                         label="Test metier 2"
-                                        style={{ marginLeft: "10px" }}
+                                        style={{ marginLeft: "10px", marginTop: "20px" }}
                                         m={1}
                                     />
                                     <Chip
                                         label="Test metier 3"
-                                        style={{ marginLeft: "10px" }}
+                                        style={{ marginLeft: "10px", marginTop: "20px" }}
                                         m={1}
                                     />
                                     <Chip
                                         label="Test metier 4"
-                                        style={{ marginLeft: "10px" }}
+                                        style={{ marginLeft: "10px", marginTop: "20px" }}
+                                        m={1}
+                                    />
+                                    <Chip
+                                        label="Test metier 4"
+                                        style={{ marginLeft: "10px", marginTop: "20px" }}
+                                        m={1}
+                                    />
+                                    <Chip
+                                        label="Test metier 4"
+                                        style={{ marginLeft: "10px", marginTop: "20px" }}
+                                        m={1}
+                                    />
+                                    <Chip
+                                        label="Test metier 4"
+                                        style={{ marginLeft: "10px", marginTop: "20px" }}
                                         m={1}
                                     />
 

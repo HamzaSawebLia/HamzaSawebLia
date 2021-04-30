@@ -73,9 +73,9 @@ const Alert = styled(MuiAlert)(spacing);
 
 
 const BigAvatar = styled(Avatar)`
-  width: 100px;
-  height: 60px;
-  border-radius: 8px;
+  width: 142px;
+  height: 80px;
+  border-radius: 3px;
   margin-top : 20px;
 
 `;
@@ -91,7 +91,8 @@ export default class Add_categorie extends Component {
 
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
                                     <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
-                                    <Typography>Ajouter une catégorie</Typography>
+                                    <Link component={NavLink} exact to="/Catalogues/Categories"> Catégorie </Link>
+                                    <Typography>Ajouter </Typography>
                                 </Breadcrumbs>
 
                                 <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
@@ -129,14 +130,13 @@ export default class Add_categorie extends Component {
                                     />
                                     <TextField
 
-
-                                        label="Commantaire"
+                                        value=""
+                                        label="Description"
                                         id="biography"
                                         multiline={true}
                                         rows={3}
                                         rowsMax={4}
                                         variant="outlined"
-                                        defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
                                     />
                                 </FormControl>
                                 <BigAvatar
@@ -154,7 +154,7 @@ export default class Add_categorie extends Component {
                                 />
                                 <label htmlFor="raised-button-file" style={{ float: "left" }}>
                                     <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                                        <FiUploadCloud /> Télécharger CIN
+                                        <FiUploadCloud /> Télécharger Média
                                      </Button>
                                 </label>
                             </Grid>
@@ -168,7 +168,7 @@ export default class Add_categorie extends Component {
                 <Card mb={6}>
                     <CardContent pb={1}>
                         <Typography variant="h6" gutterBottom>
-                            Catégories
+                            Services
                                      </Typography>
 
                     </CardContent>
@@ -189,13 +189,14 @@ export default class Add_categorie extends Component {
 
 
                                 <TableRow >
-                                    <TableCell align="left">Libelle Service</TableCell>
-                                    <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /> </TableCell>
+                                    <TableCell style={{ width: "10%" }} align="left">Libelle Service</TableCell>
+                                    <TableCell style={{ width: "30%" }} align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /> </TableCell>
                                 </TableRow>
 
 
 
                                 <TablePagination
+                                    style={{ width: "200%" }}
                                     rowsPerPageOptions={[5, 10, 25]}
                                     component="div"
                                     count={10}

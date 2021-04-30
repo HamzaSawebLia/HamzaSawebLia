@@ -71,9 +71,9 @@ const CenteredContent = styled.div`
 const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
-  width: 100px;
-  height: 60px;
-  border-radius: 8px;
+  width: 127px;
+  height: 80px;
+  border-radius: 3px;
   margin-top : 20px;
 
 `;
@@ -217,7 +217,9 @@ export default class EditArtisan extends Component {
                 <FiHome size={15} /> Dashboard
                      </Link>
               <Link component={NavLink} exact to="/Comptes/comptes">Comptes </Link>
-              <Typography>Modifier artisan</Typography>
+              <Link component={NavLink} exact to="/Comptes/comptes">Artisan </Link>
+
+              <Typography>Modifier </Typography>
             </Breadcrumbs>
 
             {this.state.loading == 1 ? (<div style={{ float: "right", marginBottom: "10px" }}> <CircularProgress m={2} color="secondary" /></div>) : (

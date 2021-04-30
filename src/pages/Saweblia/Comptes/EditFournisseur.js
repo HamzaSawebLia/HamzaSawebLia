@@ -29,7 +29,7 @@ import {
 import { Map, Home, Save } from "react-feather";
 import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
-import { FiPlus, FiChevronsLeft, FiSave, FiHome, FiMap, FiX } from "react-icons/fi";
+import { FiPlus, FiChevronsLeft, FiSave, FiHome, FiMap, FiUploadCloud } from "react-icons/fi";
 
 
 import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
@@ -62,6 +62,13 @@ const CenteredContent = styled.div`
 
 const Alert = styled(MuiAlert)(spacing);
 
+const BigAvatar = styled(Avatar)`
+  width: 150px;
+  height: 80px;
+  border-radius: 3px;
+  margin-top : 20px;
+
+`;
 export default class EditFournisseur extends Component {
   constructor(props) {
     super(props);
@@ -183,7 +190,8 @@ export default class EditFournisseur extends Component {
                 <FiHome size={15} /> Dashboard
                      </Link>
               <Link component={NavLink} exact to="/Comptes/comptes">Comptes </Link>
-              <Typography>Modifier fournisseur</Typography>
+              <Link component={NavLink} exact to="/Comptes/comptes">Fournisseur </Link>
+              <Typography>Modifier </Typography>
             </Breadcrumbs>
 
             {this.state.loading == 1 ? (<div style={{ float: "right", marginBottom: "10px" }}> <CircularProgress m={2} color="secondary" /></div>) : (
@@ -217,13 +225,14 @@ export default class EditFournisseur extends Component {
                   />
 
                   <TextField
-                    value=""
+
                     onChange={() => { }}
-                    required
+
                     style={{ width: "40%" }}
-                    id="standard-required"
+                    id="date"
+                    type="date"
                     label="Année de création"
-                    variant="outlined"
+                    defaultValue="2020-01-01"
                     m={4}
                   />
                   <TextField
@@ -395,24 +404,6 @@ export default class EditFournisseur extends Component {
                 <Paper mt={3}>
 
                   <FormControl m={2} style={{ width: "40%" }}>
-                    <InputLabel style={{ marginLeft: "20px" }}>Zone</InputLabel>
-                    <Select
-                      value={this.state.fournisseur_zone}
-                      onChange={this.onchange_fournisseur_zone}
-
-                      m={4}
-
-                    >
-
-                      <MenuItem value={2}>Zone 1</MenuItem>
-                      <MenuItem value={3}>Zone 2</MenuItem>
-                      <MenuItem value={4}>Zone 3</MenuItem>
-                      <MenuItem value={5}>Zone 4  </MenuItem>
-
-                    </Select>
-                  </FormControl>
-
-                  <FormControl m={2} style={{ width: "40%" }}>
                     <InputLabel style={{ marginLeft: "20px" }}>Univers </InputLabel>
                     <Select
                       value={this.state.fournisseur_univers}
@@ -433,10 +424,30 @@ export default class EditFournisseur extends Component {
                     </Select>
                   </FormControl>
 
+                  <FormControl m={2} style={{ width: "40%" }}>
+                    <InputLabel style={{ marginLeft: "20px" }}>Zone</InputLabel>
+                    <Select
+                      value={this.state.fournisseur_zone}
+                      onChange={this.onchange_fournisseur_zone}
+
+                      m={4}
+
+                    >
+
+                      <MenuItem value={2}>Zone 1</MenuItem>
+                      <MenuItem value={3}>Zone 2</MenuItem>
+                      <MenuItem value={4}>Zone 3</MenuItem>
+                      <MenuItem value={5}>Zone 4  </MenuItem>
+
+                    </Select>
+                  </FormControl>
+
+
+
 
                 </Paper>
 
-                <Paper mt={3}>
+                <Paper mt={3} style={{ width: "50%" }}>
                   {this.state.table_univers.length != 0 ? (
                     this.state.table_univers.map((data) => (
                       <Chip key={data}
@@ -448,6 +459,24 @@ export default class EditFournisseur extends Component {
                     ))
                   ) : null}
                 </Paper>
+                <BigAvatar
+                  alt="Remy Sharp"
+                  style={{ marginLeft: "18px" }}
+                  src={this.state.cin_img_artisan}
+                />
+                <input
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={this.onchange_cin_coordinateur_image}
+                  id="raised-button-file"
+                  multiple
+                  type="file"
+                />
+                <label htmlFor="raised-button-file" style={{ float: "left" }}>
+                  <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
+                    <FiUploadCloud /> Télécharger cotation
+                </Button>
+                </label>
               </Grid>
 
             </Grid>

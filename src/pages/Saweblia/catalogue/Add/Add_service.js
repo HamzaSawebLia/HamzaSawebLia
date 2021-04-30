@@ -41,6 +41,8 @@ import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
 
 import { spacing } from "@material-ui/system";
 
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 const Breadcrumbs = styled(MuiBreadcrumbs)(spacing);
 
 const Card = styled(MuiCard)(spacing);
@@ -73,12 +75,13 @@ const Alert = styled(MuiAlert)(spacing);
 
 
 const BigAvatar = styled(Avatar)`
-  width: 100px;
-  height: 60px;
+  width: 142px;
+  height: 80px;
   border-radius: 8px;
   margin-top : 20px;
 
 `;
+const CATEGORE = ["CATEGORE 1 ", "CATEGORE 2", "CATEGORE 3", "CATEGORE 4", "CATEGORE 5"]
 
 export default class Add_service extends Component {
     render() {
@@ -92,7 +95,8 @@ export default class Add_service extends Component {
 
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
                                     <Link component={NavLink} exact to="/">   <FiHome size={15} /> Dashboard </Link>
-                                    <Typography>Ajouter un service</Typography>
+                                    <Link component={NavLink} exact to="/Catalogues/services">    Service </Link>
+                                    <Typography>Ajouter </Typography>
                                 </Breadcrumbs>
 
                                 <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
@@ -116,34 +120,31 @@ export default class Add_service extends Component {
 
                         <Grid container spacing={6} >
                             <Grid item md={8}>
-                                <Grid container spacing={6}>
-                                    <Grid item md={12}>
-                                        <TextField
 
-                                            required
-                                            style={{ width: "45%", marginLeft: "-1px" }}
-                                            id="standard-required"
-                                            label="Libelle"
-                                            variant="outlined"
-                                            m={8}
-                                        />
-                                        <input list="browsers" name="browser" id="browser" placeholder="Categorie" style={{ width: "45%", marginTop: "34px", padding: "2.5%", borderRadius: "8px", borderRadius: "8px", mborderColor: "#f0eeeb" }} />
+                                <TextField
 
-                                        <datalist id="browsers">
-                                            <option value="Edge" />
-                                            <option value="Firefox" />
-                                            <option value="Chrome" />
-                                            <option value="Opera" />
-                                            <option value="Safari" />
-                                        </datalist>
-                                    </Grid>
-                                </Grid>
+                                    required
+                                    style={{ width: "75%", marginLeft: "-1px" }}
+                                    id="standard-required"
+                                    label="Libelle"
+                                    variant="outlined"
+                                    m={4}
+                                />
+                                <Autocomplete
+                                    id="standard-required"
+                                    options={CATEGORE}
+                                    getOptionLabel={(option) => option}
+                                    style={{ width: "75%" }}
+                                    renderInput={(params) => <TextField {...params} label="Catégorie    " variant="outlined" />}
+                                    m={4}
+                                />
+
 
                                 <FormControl fullWidth my={2} variant="outlined">
 
                                     <TextField
 
-
+                                        style={{ marginTop: "20px" }}
                                         label="Commantaire"
                                         id="biography"
                                         multiline={true}
@@ -168,7 +169,7 @@ export default class Add_service extends Component {
                                 />
                                 <label htmlFor="raised-button-file" style={{ float: "left" }}>
                                     <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                                        <FiUploadCloud /> Télécharger CIN
+                                        <FiUploadCloud /> Télécharger Média
                                      </Button>
                                 </label>
                             </Grid>
@@ -181,7 +182,7 @@ export default class Add_service extends Component {
                 <Card mb={6}>
                     <CardContent pb={1}>
                         <Typography variant="h6" gutterBottom>
-                            Catégories
+                            Prestations
                                      </Typography>
 
                     </CardContent>
@@ -203,7 +204,7 @@ export default class Add_service extends Component {
 
 
                                 <TableRow >
-                                    <TableCell align="left">Libelle Service</TableCell>
+                                    <TableCell align="left" style={{ width: "10%" }}>Libelle Service</TableCell>
                                     <TableCell align="left"> 1500 DH </TableCell>
                                     <TableCell align="left"> 2000 DH </TableCell>
                                     <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /> </TableCell>
@@ -212,6 +213,7 @@ export default class Add_service extends Component {
 
 
                                 <TablePagination
+                                    style={{ width: "200%" }}
                                     rowsPerPageOptions={[5, 10, 25]}
                                     component="div"
                                     count={10}

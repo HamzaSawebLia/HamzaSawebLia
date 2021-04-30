@@ -92,6 +92,9 @@ export default class CoordinateurDisplay extends Component {
                             <Link component={NavLink} exact to="/Comptes/comptes">
                                 Comptes
                      </Link>
+                            <Link component={NavLink} exact to="/Comptes/comptes">
+                                Coordinateur
+                     </Link>
                             <Typography>Afficher</Typography>
                         </Breadcrumbs>
 

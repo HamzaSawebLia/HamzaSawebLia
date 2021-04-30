@@ -62,8 +62,8 @@ const CenteredContent = styled.div`
 const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
-  width: 100px;
-  height: 60px;
+  width: 129px;
+  height: 80px;
   border-radius: 8px;
   margin-top : 20px;
 
@@ -581,13 +581,14 @@ export default class CreerCompte extends Component {
                     />
 
                     <TextField
-                      value=""
+
                       onChange={() => { }}
-                      required
+
                       style={{ width: "40%" }}
-                      id="standard-required"
+                      id="date"
+                      type="date"
                       label="Année de création"
-                      variant="outlined"
+                      defaultValue="2020-01-01"
                       m={4}
                     />
                     <TextField
@@ -722,7 +723,7 @@ export default class CreerCompte extends Component {
                         </Select>
                       </FormControl>
                     </Paper>
-                    <Paper mt={3}>
+                    <Paper mt={3} style={{ width: "50%" }} >
                       {this.state.table_metier.length != 0 ? (
                         this.state.table_metier.map((data) => (
                           this.state.table_metier.length <= 8 ? (<Chip key={data}
@@ -1116,7 +1117,7 @@ export default class CreerCompte extends Component {
 
                   </Paper>
 
-                  <Paper mt={3}>
+                  <Paper mt={3} style={{ width: "50%" }}>
                     {this.state.table_univers.length != 0 ? (
                       this.state.table_univers.map((data) => (
                         <Chip key={data}

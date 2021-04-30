@@ -225,7 +225,9 @@ export default class EditClient extends Component {
                 <FiHome size={15} /> Dashboard
                      </Link>
               <Link component={NavLink} exact to="/Comptes/comptes">Comptes </Link>
-              <Typography>Modifier client</Typography>
+              <Link component={NavLink} exact to="/Comptes/comptes">Client </Link>
+
+              <Typography>Modifier</Typography>
             </Breadcrumbs>
 
 

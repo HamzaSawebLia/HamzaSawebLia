@@ -30,8 +30,9 @@ import {
     TablePagination,
     FormLabel,
     Radio,
-    RadioGroup,
+
 } from "@material-ui/core";
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Map, Home, Save } from "react-feather";
 import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
@@ -73,14 +74,14 @@ const Alert = styled(MuiAlert)(spacing);
 
 
 const BigAvatar = styled(Avatar)`
-  width: 100px;
-  height: 60px;
+  width: 142px;
+  height: 80px;
   border-radius: 8px;
   margin-top : 20px;
 
 `;
 
-
+const service = ["service 1 ", "service 2", "service 3", "service 4", "service 5"]
 export default class Add_prestation extends Component {
     render() {
         return (
@@ -93,7 +94,8 @@ export default class Add_prestation extends Component {
 
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
                                     <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
-                                    <Typography>Ajouter une prestation</Typography>
+                                    <Link component={NavLink} exact to="/Catalogues/Prestations"> Prestation </Link>
+                                    <Typography>Ajouter</Typography>
                                 </Breadcrumbs>
 
                                 <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
@@ -116,7 +118,7 @@ export default class Add_prestation extends Component {
                 <Card mb={6}>
                     <CardContent>
 
-                        <Grid container spacing={6} >
+                        <Grid container spacing={8} >
                             <Grid item md={12}>
 
                                 <TextField
@@ -128,6 +130,7 @@ export default class Add_prestation extends Component {
                                     variant="outlined"
                                     m={4}
                                 />
+
                                 <TextField
 
                                     required
@@ -143,29 +146,24 @@ export default class Add_prestation extends Component {
 
 
 
-                                <Grid container spacing={6}>
-                                    <Grid item md={12}>
-                                        <TextField
+                                <TextField
 
-                                            required
-                                            style={{ width: "40%", marginLeft: "-1px" }}
-                                            id="standard-required"
-                                            label="Prix d'achat"
-                                            variant="outlined"
-                                            m={4}
-                                        />
-                                        <input list="sevices" placeholder="Servie" style={{ width: "40%", marginTop: "1.5%", padding: "1.8%", borderRadius: "8px", mborderColor: "#f0eeeb" }} />
+                                    required
+                                    style={{ width: "40%", marginLeft: "-1px" }}
+                                    id="standard-required"
+                                    label="Prix d'achat"
+                                    variant="outlined"
+                                    m={4}
+                                />
+                                <Autocomplete
+                                    id="standard-required"
+                                    options={service}
+                                    getOptionLabel={(option) => option}
+                                    style={{ width: "40%" }}
+                                    renderInput={(params) => <TextField {...params} label="Service" variant="outlined" />}
+                                    m={4}
+                                />
 
-                                        <datalist id="sevices" style={{ marginBottom: "-20px" }} >
-                                            <option value="service 1" />
-                                            <option value="service 2" />
-                                            <option value="service 3" />
-                                            <option value="service 4" />
-                                            <option value="service 5" />
-                                        </datalist>
-
-                                    </Grid>
-                                </Grid>
 
                                 <FormControl style={{ marginTop: "45px" }} fullWidth my={2} variant="outlined">
 
@@ -196,7 +194,7 @@ export default class Add_prestation extends Component {
                                 />
                                 <label htmlFor="raised-button-file" style={{ float: "left" }}>
                                     <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                                        <FiUploadCloud /> Télécharger CIN
+                                        <FiUploadCloud /> Télécharger Média
                                      </Button>
                                 </label>
                             </Grid>

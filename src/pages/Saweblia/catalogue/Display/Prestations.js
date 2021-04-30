@@ -67,9 +67,7 @@ export default class Prestations extends Component {
                 <br />
                 <Card mb={6}>
                     <CardContent pb={1}>
-                        <Typography variant="h6" gutterBottom>
-                            Prestations
-                                     </Typography>
+
 
                     </CardContent>
                     <Paper>
@@ -80,8 +78,6 @@ export default class Prestations extends Component {
                                     <TableCell align="left"> Libelle </TableCell>
                                     <TableCell align="left"> Description </TableCell>
                                     <TableCell align="left"> Prix d'achat </TableCell>
-
-                                    <TableCell align="left"> Coefficient remise </TableCell>
                                     <TableCell align="left"> Garantie </TableCell>
                                     <TableCell align="left">  </TableCell>
                                 </TableRow>
@@ -95,8 +91,6 @@ export default class Prestations extends Component {
                                     <TableCell align="left" style={{ width: "10%" }}>Libelle prestation</TableCell>
                                     <TableCell align="left">Description prestation</TableCell>
                                     <TableCell align="left">Prix d'achat</TableCell>
-
-                                    <TableCell align="left"> Coefficient remise </TableCell>
                                     <TableCell align="left"> Garantie </TableCell>
                                     <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> </TableCell>
                                 </TableRow>

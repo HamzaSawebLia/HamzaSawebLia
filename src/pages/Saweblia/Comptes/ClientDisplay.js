@@ -82,6 +82,9 @@ export default class ClientDisplay extends Component {
                             <Link component={NavLink} exact to="/Comptes/comptes">
                                 Comptes
                      </Link>
+                            <Link component={NavLink} exact to="/Comptes/comptes">
+                                Client
+                     </Link>
                             <Typography>Afficher</Typography>
                         </Breadcrumbs>
 
@@ -99,7 +102,9 @@ export default class ClientDisplay extends Component {
                             <Grid item md={12}>
                                 <form noValidate autoComplete="off">
                                     <TextField
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
 
                                         value="Client Display Nom"
                                         required
@@ -111,7 +116,9 @@ export default class ClientDisplay extends Component {
                                     />
 
                                     <TextField
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
 
                                         value="Client Display email"
                                         style={{ width: "40%" }}
@@ -122,7 +129,9 @@ export default class ClientDisplay extends Component {
                                     />
 
                                     <TextField
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
 
                                         value="Client Display tel"
                                         required
@@ -155,7 +164,9 @@ export default class ClientDisplay extends Component {
 
                                 <form noValidate autoComplete="off">
                                     <TextField
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
 
                                         value="Client Display Canal d'acquisition"
                                         required
@@ -167,7 +178,9 @@ export default class ClientDisplay extends Component {
                                     />
 
                                     <TextField
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
 
                                         value="Client Display Catégorie"
                                         style={{ width: "40%" }}
@@ -183,7 +196,9 @@ export default class ClientDisplay extends Component {
 
                                 <FormControl fullWidth my={2} variant="outlined">
                                     <TextField
-                                        disabled
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
                                         style={{ marginTop: "20px", marginLeft: "15px" }}
 
                                         value="Client Display observations"

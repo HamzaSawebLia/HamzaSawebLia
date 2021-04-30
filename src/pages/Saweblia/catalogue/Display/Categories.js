@@ -68,9 +68,6 @@ export default class Categories extends Component {
 
                 <Card mb={6}>
                     <CardContent pb={1}>
-                        <Typography variant="h6" gutterBottom>
-                            Catégories
-                                     </Typography>
 
                     </CardContent>
                     <Paper>

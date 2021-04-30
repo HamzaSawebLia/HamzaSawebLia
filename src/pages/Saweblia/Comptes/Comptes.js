@@ -63,7 +63,7 @@ export default class Comptes extends Component {
     this.setState({
       type: 1,
       clickedType: 1,
-      tableHead: ["Nom", "Tél", "Email", "Statut", "Type", ""],
+      tableHead: ["Nom", "Tél", "Email", "Type", "Statut", ""],
     });
 
   }

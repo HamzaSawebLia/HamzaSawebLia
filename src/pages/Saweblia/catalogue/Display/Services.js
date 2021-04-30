@@ -70,9 +70,7 @@ export default class Services extends Component {
 
                 <Card mb={6}>
                     <CardContent pb={1}>
-                        <Typography variant="h6" gutterBottom>
-                            Services
-                                    </Typography>
+
 
                     </CardContent>
                     <Paper>
