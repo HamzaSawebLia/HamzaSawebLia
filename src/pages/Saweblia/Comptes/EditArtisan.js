@@ -71,7 +71,7 @@ const CenteredContent = styled.div`
 const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
-  width: 127px;
+  width: 138px;
   height: 80px;
   border-radius: 3px;
   margin-top : 20px;
@@ -404,7 +404,7 @@ export default class EditArtisan extends Component {
             />
             <label htmlFor="raised-button-file" style={{ float: "left" }}>
               <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                <FiUploadCloud /> Télécharger CIN
+                <FiUploadCloud size={15} style={{ marginRight: "8px" }} /> Télécharger CIN
                 </Button>
             </label>
           </CardContent>

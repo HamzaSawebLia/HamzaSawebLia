@@ -75,9 +75,9 @@ const Alert = styled(MuiAlert)(spacing);
 
 
 const BigAvatar = styled(Avatar)`
-  width: 142px;
+  width: 154px;
   height: 80px;
-  border-radius: 8px;
+  border-radius: 3px;
   margin-top : 20px;
 
 `;
@@ -169,7 +169,7 @@ export default class Add_service extends Component {
                                 />
                                 <label htmlFor="raised-button-file" style={{ float: "left" }}>
                                     <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                                        <FiUploadCloud /> Télécharger Média
+                                        <FiUploadCloud size={15} style={{ marginRight: "10px" }} /> Télécharger Média
                                      </Button>
                                 </label>
                             </Grid>
@@ -192,9 +192,9 @@ export default class Add_service extends Component {
 
                                 <TableRow>
                                     <TableCell align="left"> Libelle </TableCell>
-                                    <TableCell align="left"> Prix d'achat </TableCell>
-                                    <TableCell align="left"> Prix de vente </TableCell>
-                                    <TableCell align="left"> Actions </TableCell>
+                                    <TableCell align="left"> Description </TableCell>
+                                    <TableCell align="left"> Vente P.U. </TableCell>
+                                    <TableCell align="left">  </TableCell>
 
                                 </TableRow>
 
@@ -205,7 +205,7 @@ export default class Add_service extends Component {
 
                                 <TableRow >
                                     <TableCell align="left" style={{ width: "10%" }}>Libelle Service</TableCell>
-                                    <TableCell align="left"> 1500 DH </TableCell>
+                                    <TableCell align="left"> description DH </TableCell>
                                     <TableCell align="left"> 2000 DH </TableCell>
                                     <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /> </TableCell>
                                 </TableRow>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import styled from "styled-components/macro";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
@@ -79,11 +79,12 @@ const BigAvatar = styled(Avatar)`
   margin-top : 20px;
 
 `;
-export default class Add_categorie extends Component {
+
+export default class CategorieEdit extends Component {
     render() {
         return (
             <div>
-                <Helmet title="Ajouter une catégorie" />
+                <Helmet title="Modifier une catégorie" />
                 <Card >
                     <CardContent>
                         <div className="row">
@@ -92,7 +93,7 @@ export default class Add_categorie extends Component {
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
                                     <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
                                     <Link component={NavLink} exact to="/Catalogues/Categories"> Catégorie </Link>
-                                    <Typography>Ajouter </Typography>
+                                    <Typography>Modifier </Typography>
                                 </Breadcrumbs>
 
                                 <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
@@ -122,6 +123,8 @@ export default class Add_categorie extends Component {
                                     <TextField
 
                                         required
+
+                                        value="libelle test"
                                         style={{ width: "100%", marginLeft: "-1px" }}
                                         id="standard-required"
                                         label="Libelle"
@@ -130,7 +133,7 @@ export default class Add_categorie extends Component {
                                     />
                                     <TextField
 
-                                        value=""
+                                        value=" descripton test"
                                         label="Description"
                                         id="biography"
                                         multiline={true}

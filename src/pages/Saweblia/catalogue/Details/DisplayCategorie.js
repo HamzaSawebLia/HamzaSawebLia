@@ -73,17 +73,18 @@ const Alert = styled(MuiAlert)(spacing);
 
 
 const BigAvatar = styled(Avatar)`
-  width: 154px;
-  height: 85px;
+  width: 400px;
+  height: 250px;
   border-radius: 3px;
   margin-top : 20px;
 
 `;
-export default class Add_categorie extends Component {
+
+export default class DisplayCategorie extends Component {
     render() {
         return (
             <div>
-                <Helmet title="Ajouter une catégorie" />
+                <Helmet title="Affichage une catégorie" />
                 <Card >
                     <CardContent>
                         <div className="row">
@@ -92,12 +93,9 @@ export default class Add_categorie extends Component {
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
                                     <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
                                     <Link component={NavLink} exact to="/Catalogues/Categories"> Catégorie </Link>
-                                    <Typography>Ajouter </Typography>
+                                    <Typography>Afficher détails </Typography>
                                 </Breadcrumbs>
 
-                                <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
-                                    <FiSave style={{ marginRight: "10px" }} /> Enregistrer
-                                    </Button>
                                 <Link component={NavLink} exact to="/Catalogues/Categories">
                                     <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-26px" }} >
                                         <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
@@ -122,6 +120,10 @@ export default class Add_categorie extends Component {
                                     <TextField
 
                                         required
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        value="libelle test"
                                         style={{ width: "100%", marginLeft: "-1px" }}
                                         id="standard-required"
                                         label="Libelle"
@@ -129,8 +131,10 @@ export default class Add_categorie extends Component {
                                         m={8}
                                     />
                                     <TextField
-
-                                        value=""
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        value=" descripton test"
                                         label="Description"
                                         id="biography"
                                         multiline={true}
@@ -141,22 +145,9 @@ export default class Add_categorie extends Component {
                                 </FormControl>
                                 <BigAvatar
                                     alt="Remy Sharp"
-                                    style={{ marginLeft: "18px" }}
                                     src="/static/img/avatars/avatar-1.jpg"
                                 />
-                                <input
-                                    accept="image/*"
-                                    style={{ display: "none" }}
-                                    onChange={() => { }}
-                                    id="raised-button-file"
-                                    multiple
-                                    type="file"
-                                />
-                                <label htmlFor="raised-button-file" style={{ float: "left" }}>
-                                    <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                                        <FiUploadCloud size={15} style={{ marginRight: "10px" }} /> Télécharger Média
-                                     </Button>
-                                </label>
+
                             </Grid>
 
                         </Grid>

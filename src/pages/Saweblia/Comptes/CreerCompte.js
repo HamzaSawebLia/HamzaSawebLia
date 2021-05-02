@@ -62,9 +62,9 @@ const CenteredContent = styled.div`
 const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
-  width: 129px;
+  width: 138px;
   height: 80px;
-  border-radius: 8px;
+  border-radius: 3px;
   margin-top : 20px;
 
 `;
@@ -949,7 +949,7 @@ export default class CreerCompte extends Component {
               />
               <label htmlFor="raised-button-file" style={{ float: "left" }}>
                 <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                  <FiUploadCloud /> Télécharger CIN
+                  <FiUploadCloud size={15} style={{ marginRight: "7px" }} /> Télécharger CIN
                 </Button>
               </label>
 
@@ -1132,6 +1132,24 @@ export default class CreerCompte extends Component {
                 </Grid>
 
               </Grid>
+              <BigAvatar
+                alt="Remy Sharp"
+                style={{ marginLeft: "18px" }}
+                src={this.state.cin_img_artisan}
+              />
+              <input
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={this.onchange_cin_atisan_image}
+                id="raised-button-file"
+                multiple
+                type="file"
+              />
+              <label htmlFor="raised-button-file" style={{ float: "left" }}>
+                <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
+                  <FiUploadCloud size={15} style={{ marginRight: "10px" }} /> Télécharger RC
+                </Button>
+              </label>
 
             </CardContent>
           </Card>
@@ -1200,7 +1218,7 @@ export default class CreerCompte extends Component {
               />
               <label htmlFor="raised-button-file" style={{ float: "left" }}>
                 <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                  <FiUploadCloud /> Télécharger CIN
+                  <FiUploadCloud size={15} style={{ marginRight: "7px" }} /> Télécharger CIN
                 </Button>
               </label>
 

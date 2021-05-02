@@ -63,8 +63,8 @@ const CenteredContent = styled.div`
 const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
-  width: 150px;
-  height: 80px;
+  width: 138px;
+  height: 75px;
   border-radius: 3px;
   margin-top : 20px;
 
@@ -474,7 +474,7 @@ export default class EditFournisseur extends Component {
                 />
                 <label htmlFor="raised-button-file" style={{ float: "left" }}>
                   <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                    <FiUploadCloud /> Télécharger cotation
+                    <FiUploadCloud size={15} style={{ marginRight: "10px" }} /> Télécharger RC
                 </Button>
                 </label>
               </Grid>

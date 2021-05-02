@@ -134,6 +134,18 @@ import Prestations from "../pages/Saweblia/catalogue/Display/Prestations"
 import Add_categorie from "../pages/Saweblia/catalogue/Add/Add_categorie"
 import Add_service from "../pages/Saweblia/catalogue/Add/Add_service";
 import Add_prestation from "../pages/Saweblia/catalogue/Add/Add_prestation"
+import ServiceEdit from "../pages/Saweblia/catalogue/Edit/ServiceEdit";
+import PrestationEdit from "../pages/Saweblia/catalogue/Edit/PrestationEdit";
+import CategorieEdit from "../pages/Saweblia/catalogue/Edit/CategorieEdit";
+import DisplayCategorie from "../pages/Saweblia/catalogue/Details/DisplayCategorie";
+import DisplayPrestation from "../pages/Saweblia/catalogue/Details/DisplayPrestation";
+import DisplayService from "../pages/Saweblia/catalogue/Details/DisplayService"
+import Fournitures from "../pages/Saweblia/catalogue/Display/Fournitures";
+import DisplayFourniture from "../pages/Saweblia/catalogue/Details/DisplayFourniture";
+import Add_fourniture from "../pages/Saweblia/catalogue/Add/Add_fourniture";
+import FournitureEdit from "../pages/Saweblia/catalogue/Edit/FournitureEdit";
+
+
 
 //Catalogues Routes
 const CatalogueRoutess = {
@@ -159,6 +171,11 @@ const CatalogueRoutess = {
       component: Prestations,
     },
     {
+      path: "/Catalogues/Fournitures",
+      name: "Fournitures",
+      component: Fournitures,
+    },
+    {
       path: "/Catalogues/Add_categorie",
       name: "Ajouter categorie",
       component: Add_categorie,
@@ -172,7 +189,54 @@ const CatalogueRoutess = {
       path: "/Catalogues/Add_prestation",
       name: "Ajouter prestation",
       component: Add_prestation,
-    }
+    },
+    {
+      path: "/Catalogues/Add_fourniture",
+      name: "Ajouter fourniture",
+      component: Add_fourniture,
+
+    },
+    {
+      path: "/Catalogues/Service_Edit",
+      name: "Modifier Service",
+      component: ServiceEdit,
+    },
+    {
+      path: "/Catalogues/Prestation_Edit",
+      name: "Modifier prestation",
+      component: PrestationEdit,
+    },
+    {
+      path: "/Catalogues/Categorie_Edit",
+      name: "Modification catégorie",
+      component: CategorieEdit,
+    },
+    {
+      path: "/Catalogues/Fourniture_Edit",
+      name: "Modification Fourniture",
+      component: FournitureEdit,
+    },
+    {
+      path: "/Catalogues/DisplayService",
+      name: "Afficher Service",
+      component: DisplayService,
+    },
+    {
+      path: "/Catalogues/DisplayPrestation",
+      name: "Afficher prestation",
+      component: DisplayPrestation,
+    },
+    {
+      path: "/Catalogues/Display_Categorie",
+      name: "Afficher catégorie",
+      component: DisplayCategorie,
+    },
+    {
+      path: "/Catalogues/Display_fourniture",
+      name: "Afficher fourniture",
+      component: DisplayFourniture,
+    },
+
   ]
 }
 

@@ -81,12 +81,14 @@ const BigAvatar = styled(Avatar)`
 
 `;
 
-const service = ["service 1 ", "service 2", "service 3", "service 4", "service 5"]
-export default class Add_prestation extends Component {
+const service = ["service 1 ", "service 2", "service 3", "service 4", "service 5"];
+
+
+export default class PrestationEdit extends Component {
     render() {
         return (
             <div>
-                <Helmet title="Ajouter une prestation" />
+                <Helmet title="Modifier une prestation" />
                 <Card >
                     <CardContent>
                         <div className="row">
@@ -95,7 +97,7 @@ export default class Add_prestation extends Component {
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
                                     <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
                                     <Link component={NavLink} exact to="/Catalogues/Prestations"> Prestation </Link>
-                                    <Typography>Ajouter</Typography>
+                                    <Typography>Modifier</Typography>
                                 </Breadcrumbs>
 
                                 <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
@@ -115,6 +117,7 @@ export default class Add_prestation extends Component {
                 </Card>
 
                 <br />
+
                 <Card mb={6}>
                     <CardContent>
 
@@ -124,22 +127,26 @@ export default class Add_prestation extends Component {
                                 <TextField
 
                                     required
-                                    style={{ width: "40%", marginLeft: "-1px" }}
+                                    style={{ width: "75%", marginLeft: "-1px" }}
                                     id="standard-required"
                                     label="Libelle"
                                     variant="outlined"
                                     m={4}
                                 />
 
+
                                 <TextField
 
-                                    required
-                                    style={{ width: "40%", marginLeft: "-1px" }}
-                                    id="standard-required"
-                                    label="Coef. remise"
+                                    style={{ width: "75%" }}
+                                    label="Description"
+                                    id="biography"
+                                    multiline={true}
+                                    rows={3}
+                                    rowsMax={4}
                                     variant="outlined"
-                                    m={4}
+                                    defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
                                 />
+
 
 
 
@@ -155,6 +162,38 @@ export default class Add_prestation extends Component {
                                     variant="outlined"
                                     m={4}
                                 />
+                                <TextField
+
+                                    required
+                                    style={{ width: "40%", marginLeft: "-1px" }}
+                                    id="standard-required"
+                                    label="Prix de vente"
+                                    variant="outlined"
+                                    m={4}
+                                />
+                                <TextField
+
+                                    required
+                                    style={{ width: "40%", marginLeft: "-1px" }}
+                                    id="standard-required"
+                                    label="Coef. remise"
+                                    variant="outlined"
+                                    m={4}
+                                />
+
+                                <FormControl m={2} style={{ width: "40%" }}>
+                                    <InputLabel style={{ marginLeft: "20px" }}>Garantie</InputLabel>
+                                    <Select
+                                        m={4}
+
+                                    >
+
+                                        <MenuItem value={"0"}>Pas de grantie</MenuItem>
+                                        <MenuItem value={"2"}>2 mois</MenuItem>
+                                        <MenuItem value={"6"}>6 mois</MenuItem>
+                                    </Select>
+                                </FormControl>
+
                                 <Autocomplete
                                     id="standard-required"
                                     options={service}
@@ -165,20 +204,7 @@ export default class Add_prestation extends Component {
                                 />
 
 
-                                <FormControl style={{ marginTop: "45px" }} fullWidth my={2} variant="outlined">
 
-                                    <TextField
-
-                                        style={{ width: "75%" }}
-                                        label="Description"
-                                        id="biography"
-                                        multiline={true}
-                                        rows={3}
-                                        rowsMax={4}
-                                        variant="outlined"
-                                        defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
-                                    />
-                                </FormControl>
                                 <BigAvatar
                                     alt="Remy Sharp"
                                     style={{ marginLeft: "18px" }}
@@ -202,7 +228,6 @@ export default class Add_prestation extends Component {
                         </Grid>
                     </CardContent>
                 </Card>
-
 
             </div>
         )

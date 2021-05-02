@@ -24,7 +24,7 @@ import {
     TablePagination,
 } from "@material-ui/core";
 
-import { FiEdit, FiPlus, FiTrash2, FiSave, FiHome, FiEye, FiUpload } from "react-icons/fi";
+import { FiEdit, FiSave, FiHome, FiPlus, FiEye, FiTrash2 } from "react-icons/fi";
 
 import { StarBorder as StarIcon } from "@material-ui/icons";
 
@@ -46,28 +46,28 @@ const Price = styled.div`
 const Header = styled.div`
   padding: ${(props) => props.theme.spacing(6)}px 0;
 `;
-
-export default class Prestations extends Component {
+export default class Fournitures extends Component {
     render() {
         return (
             <React.Fragment>
-                <Helmet title="Prestations" />
+                <Helmet title="Fournitures" />
+
                 <Card >
                     <CardContent>
                         <Breadcrumbs aria-label="Breadcrumb" mt={2}>
                             <Link component={NavLink} exact to="/">
-                                <FiHome size={15} /> Dashboard
-                            </Link>
-                            <Typography>Prestations</Typography>
+                                <FiHome size={15} />     Dashboard
+                   </Link>
+                            <Typography>Fourniture</Typography>
                         </Breadcrumbs>
-                        <Link component={NavLink} exact to="/Catalogues/Add_prestation"><Button style={{ float: "right", marginTop: "-28px" }} variant="contained" color="secondary" m={1}> <FiPlus style={{ marginRight: "10px" }} /> <span> </span>Ajouter  </Button> </Link>
+                        <Link component={NavLink} exact to="/Catalogues/Add_categorie"><Button style={{ float: "right", marginTop: "-28px" }} variant="contained" color="secondary" m={1}> <FiPlus style={{ marginRight: "10px" }} /> <span> </span>Ajouter  </Button> </Link>
                     </CardContent>
                 </Card>
 
                 <br />
+
                 <Card mb={6}>
                     <CardContent pb={1}>
-
 
                     </CardContent>
                     <Paper>
@@ -77,10 +77,11 @@ export default class Prestations extends Component {
                                 <TableRow>
                                     <TableCell align="left"> Libelle </TableCell>
                                     <TableCell align="left"> Description </TableCell>
-                                    <TableCell align="left"> Service </TableCell>
+                                    <TableCell align="left">  Achat P.U.</TableCell>
                                     <TableCell align="left"> Vente P.U. </TableCell>
-                                    <TableCell align="left"> Coef.  </TableCell>
+                                    <TableCell align="left"> Fournisseur </TableCell>
                                     <TableCell align="left">  </TableCell>
+
                                 </TableRow>
 
                             </TableHead>
@@ -89,12 +90,12 @@ export default class Prestations extends Component {
 
 
                                 <TableRow >
-                                    <TableCell align="left" style={{ width: "10%" }}>Libelle prestation</TableCell>
-                                    <TableCell align="left">Description prestation</TableCell>
-                                    <TableCell align="left">Service prestation</TableCell>
-                                    <TableCell align="left"> 1540 DH </TableCell>
-                                    <TableCell align="left"> 10%  </TableCell>
-                                    <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> </TableCell>
+                                    <TableCell align="left" style={{ width: "10%" }}>Libelle Fourniture</TableCell>
+                                    <TableCell align="left">Description Fourniture</TableCell>
+                                    <TableCell align="left">  1500dh</TableCell>
+                                    <TableCell align="left"> 2000DH </TableCell>
+                                    <TableCell align="left"> Fournisseur Name </TableCell>
+                                    <TableCell align="left" ><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /></TableCell>
                                 </TableRow>
 
 
@@ -113,6 +114,7 @@ export default class Prestations extends Component {
                         </Table>
                     </Paper>
                 </Card>
+
 
             </React.Fragment>
         )

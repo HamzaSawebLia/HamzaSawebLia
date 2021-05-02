@@ -74,19 +74,20 @@ const Alert = styled(MuiAlert)(spacing);
 
 
 const BigAvatar = styled(Avatar)`
-  width: 154px;
-  height: 80px;
+  width: 400px;
+  height: 250px;
   border-radius: 3px;
   margin-top : 20px;
 
 `;
 
-const service = ["service 1 ", "service 2", "service 3", "service 4", "service 5"]
-export default class Add_prestation extends Component {
+const service = ["service 1 ", "service 2", "service 3", "service 4", "service 5"];
+
+export default class DisplayPrestation extends Component {
     render() {
         return (
             <div>
-                <Helmet title="Ajouter une prestation" />
+                <Helmet title="Afficher une prestation" />
                 <Card >
                     <CardContent>
                         <div className="row">
@@ -95,12 +96,9 @@ export default class Add_prestation extends Component {
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
                                     <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
                                     <Link component={NavLink} exact to="/Catalogues/Prestations"> Prestation </Link>
-                                    <Typography>Ajouter</Typography>
+                                    <Typography>Afficher détails</Typography>
                                 </Breadcrumbs>
 
-                                <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
-                                    <FiSave style={{ marginRight: "10px" }} /> Enregistrer
-                                    </Button>
 
                                 <Link component={NavLink} exact to="/Catalogues/Prestations">
                                     <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-26px" }} >
@@ -115,6 +113,7 @@ export default class Add_prestation extends Component {
                 </Card>
 
                 <br />
+
                 <Card mb={6}>
                     <CardContent>
 
@@ -124,16 +123,73 @@ export default class Add_prestation extends Component {
                                 <TextField
 
                                     required
-                                    style={{ width: "40%", marginLeft: "-1px" }}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    value="libelle test"
+                                    style={{ width: "75%", marginLeft: "-1px" }}
                                     id="standard-required"
                                     label="Libelle"
                                     variant="outlined"
                                     m={4}
                                 />
 
+
+                                <TextField
+
+                                    style={{ width: "75%" }}
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    value="DESCRIPTION test"
+                                    label="Description"
+                                    id="biography"
+                                    multiline={true}
+                                    rows={3}
+                                    rowsMax={4}
+                                    variant="outlined"
+                                    defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
+                                />
+
+
+
+
+
+
+
                                 <TextField
 
                                     required
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    value="1547 test"
+                                    style={{ width: "40%", marginLeft: "-1px" }}
+                                    id="standard-required"
+                                    label="Prix d'achat"
+                                    variant="outlined"
+                                    m={4}
+                                />
+                                <TextField
+
+                                    required
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    value="1469 test"
+                                    style={{ width: "40%", marginLeft: "-1px" }}
+                                    id="standard-required"
+                                    label="Prix de vente"
+                                    variant="outlined"
+                                    m={4}
+                                />
+                                <TextField
+
+                                    required
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    value="15 test"
                                     style={{ width: "40%", marginLeft: "-1px" }}
                                     id="standard-required"
                                     label="Coef. remise"
@@ -141,69 +197,44 @@ export default class Add_prestation extends Component {
                                     m={4}
                                 />
 
-
-
-
-
-
                                 <TextField
 
                                     required
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    value="6 mois test"
                                     style={{ width: "40%", marginLeft: "-1px" }}
                                     id="standard-required"
-                                    label="Prix d'achat"
+                                    label="Garantie"
                                     variant="outlined"
                                     m={4}
                                 />
-                                <Autocomplete
+                                <TextField
+
+                                    required
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    value="Services test"
+                                    style={{ width: "40%", marginLeft: "-1px" }}
                                     id="standard-required"
-                                    options={service}
-                                    getOptionLabel={(option) => option}
-                                    style={{ width: "40%" }}
-                                    renderInput={(params) => <TextField {...params} label="Service" variant="outlined" />}
+                                    label="Service"
+                                    variant="outlined"
                                     m={4}
                                 />
 
 
-                                <FormControl style={{ marginTop: "45px" }} fullWidth my={2} variant="outlined">
-
-                                    <TextField
-
-                                        style={{ width: "75%" }}
-                                        label="Description"
-                                        id="biography"
-                                        multiline={true}
-                                        rows={3}
-                                        rowsMax={4}
-                                        variant="outlined"
-                                        defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
-                                    />
-                                </FormControl>
                                 <BigAvatar
                                     alt="Remy Sharp"
-                                    style={{ marginLeft: "18px" }}
                                     src="/static/img/avatars/avatar-1.jpg"
                                 />
-                                <input
-                                    accept="image/*"
-                                    style={{ display: "none" }}
-                                    onChange={() => { }}
-                                    id="raised-button-file"
-                                    multiple
-                                    type="file"
-                                />
-                                <label htmlFor="raised-button-file" style={{ float: "left" }}>
-                                    <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
-                                        <FiUploadCloud size={15} style={{ marginRight: "5px" }} /> Télécharger Média
-                                     </Button>
-                                </label>
+
                             </Grid>
 
                         </Grid>
                     </CardContent>
                 </Card>
-
-
             </div>
         )
     }

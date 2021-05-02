@@ -41,6 +41,8 @@ import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
 
 import { spacing } from "@material-ui/system";
 
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 const Breadcrumbs = styled(MuiBreadcrumbs)(spacing);
 
 const Card = styled(MuiCard)(spacing);
@@ -74,69 +76,82 @@ const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
   width: 154px;
-  height: 85px;
+  height: 80px;
   border-radius: 3px;
   margin-top : 20px;
 
 `;
-export default class Add_categorie extends Component {
+const CATEGORE = ["CATEGORE 1 ", "CATEGORE 2", "CATEGORE 3", "CATEGORE 4", "CATEGORE 5"]
+
+export default class ServiceEdit extends Component {
     render() {
         return (
             <div>
-                <Helmet title="Ajouter une catégorie" />
+                <Helmet title="Modifier un Service" />
                 <Card >
                     <CardContent>
                         <div className="row">
                             <div className="column">
 
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
-                                    <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
-                                    <Link component={NavLink} exact to="/Catalogues/Categories"> Catégorie </Link>
-                                    <Typography>Ajouter </Typography>
+                                    <Link component={NavLink} exact to="/">   <FiHome size={15} /> Dashboard </Link>
+                                    <Link component={NavLink} exact to="/Catalogues/services">    Service </Link>
+                                    <Typography>Modifier </Typography>
                                 </Breadcrumbs>
 
                                 <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
                                     <FiSave style={{ marginRight: "10px" }} /> Enregistrer
                                     </Button>
-                                <Link component={NavLink} exact to="/Catalogues/Categories">
+                                <Link component={NavLink} exact to="/Catalogues/services">
                                     <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-26px" }} >
                                         <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
                                     </Button>
                                 </Link>
+
                             </div>
                         </div>
 
                     </CardContent>
                 </Card>
-
                 <br />
-
                 <Card mb={6}>
                     <CardContent>
+
 
                         <Grid container spacing={6} >
                             <Grid item md={8}>
 
+                                <TextField
+
+                                    required
+                                    style={{ width: "75%", marginLeft: "-1px" }}
+                                    id="standard-required"
+                                    label="Libelle"
+                                    variant="outlined"
+                                    m={4}
+                                />
+                                <Autocomplete
+                                    id="standard-required"
+                                    options={CATEGORE}
+                                    getOptionLabel={(option) => option}
+                                    style={{ width: "75%" }}
+                                    renderInput={(params) => <TextField {...params} label="Catégorie    " variant="outlined" />}
+                                    m={4}
+                                />
+
 
                                 <FormControl fullWidth my={2} variant="outlined">
+
                                     <TextField
 
-                                        required
-                                        style={{ width: "100%", marginLeft: "-1px" }}
-                                        id="standard-required"
-                                        label="Libelle"
-                                        variant="outlined"
-                                        m={8}
-                                    />
-                                    <TextField
-
-                                        value=""
-                                        label="Description"
+                                        style={{ marginTop: "20px" }}
+                                        label="Commantaire"
                                         id="biography"
                                         multiline={true}
                                         rows={3}
                                         rowsMax={4}
                                         variant="outlined"
+                                        defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
                                     />
                                 </FormControl>
                                 <BigAvatar
@@ -160,7 +175,6 @@ export default class Add_categorie extends Component {
                             </Grid>
 
                         </Grid>
-
                     </CardContent>
                 </Card>
 
@@ -168,7 +182,7 @@ export default class Add_categorie extends Component {
                 <Card mb={6}>
                     <CardContent pb={1}>
                         <Typography variant="h6" gutterBottom>
-                            Services
+                            Prestations
                                      </Typography>
 
                     </CardContent>
@@ -178,8 +192,9 @@ export default class Add_categorie extends Component {
 
                                 <TableRow>
                                     <TableCell align="left"> Libelle </TableCell>
-
-                                    <TableCell align="left"> Actions </TableCell>
+                                    <TableCell align="left"> Description </TableCell>
+                                    <TableCell align="left"> Vente P.U. </TableCell>
+                                    <TableCell align="left">  </TableCell>
 
                                 </TableRow>
 
@@ -189,8 +204,10 @@ export default class Add_categorie extends Component {
 
 
                                 <TableRow >
-                                    <TableCell style={{ width: "10%" }} align="left">Libelle Service</TableCell>
-                                    <TableCell style={{ width: "30%" }} align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /> </TableCell>
+                                    <TableCell align="left" style={{ width: "10%" }}>Libelle Service</TableCell>
+                                    <TableCell align="left"> description DH </TableCell>
+                                    <TableCell align="left"> 2000 DH </TableCell>
+                                    <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /> </TableCell>
                                 </TableRow>
 
 

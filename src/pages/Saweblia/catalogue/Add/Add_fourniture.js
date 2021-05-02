@@ -82,27 +82,27 @@ const BigAvatar = styled(Avatar)`
 `;
 
 const service = ["service 1 ", "service 2", "service 3", "service 4", "service 5"]
-export default class Add_prestation extends Component {
+
+export default class Add_fourniture extends Component {
     render() {
         return (
             <div>
-                <Helmet title="Ajouter une prestation" />
+                <Helmet title="Ajouter une fourniture " />
                 <Card >
                     <CardContent>
                         <div className="row">
                             <div className="column">
 
                                 <Breadcrumbs aria-label="Breadcrumb" mt={2}>
-                                    <Link component={NavLink} exact to="/"> <FiHome size={15} /> Dashboard </Link>
-                                    <Link component={NavLink} exact to="/Catalogues/Prestations"> Prestation </Link>
-                                    <Typography>Ajouter</Typography>
+                                    <Link component={NavLink} exact to="/">   <FiHome size={15} /> Dashboard </Link>
+                                    <Link component={NavLink} exact to="/Catalogues/services">    Fourniture </Link>
+                                    <Typography>Ajouter </Typography>
                                 </Breadcrumbs>
 
                                 <Button style={{ float: "right", marginTop: "-25px" }} variant="contained" color="secondary" m={1}>
                                     <FiSave style={{ marginRight: "10px" }} /> Enregistrer
                                     </Button>
-
-                                <Link component={NavLink} exact to="/Catalogues/Prestations">
+                                <Link component={NavLink} exact to="/Catalogues/services">
                                     <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-26px" }} >
                                         <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
                                     </Button>
@@ -113,7 +113,6 @@ export default class Add_prestation extends Component {
 
                     </CardContent>
                 </Card>
-
                 <br />
                 <Card mb={6}>
                     <CardContent>
@@ -124,21 +123,24 @@ export default class Add_prestation extends Component {
                                 <TextField
 
                                     required
-                                    style={{ width: "40%", marginLeft: "-1px" }}
+                                    style={{ width: "75%", marginLeft: "20px" }}
                                     id="standard-required"
                                     label="Libelle"
                                     variant="outlined"
                                     m={4}
                                 />
 
+
                                 <TextField
 
-                                    required
-                                    style={{ width: "40%", marginLeft: "-1px" }}
-                                    id="standard-required"
-                                    label="Coef. remise"
+                                    style={{ width: "75%", marginLeft: "20px" }}
+                                    label="Description"
+                                    id="biography"
+                                    multiline={true}
+                                    rows={3}
+                                    rowsMax={4}
                                     variant="outlined"
-                                    m={4}
+                                    defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
                                 />
 
 
@@ -146,39 +148,64 @@ export default class Add_prestation extends Component {
 
 
 
+
                                 <TextField
 
                                     required
-                                    style={{ width: "40%", marginLeft: "-1px" }}
+                                    style={{ width: "40%", marginLeft: "20px" }}
                                     id="standard-required"
                                     label="Prix d'achat"
                                     variant="outlined"
                                     m={4}
                                 />
+                                <TextField
+
+                                    required
+                                    style={{ width: "40%", marginLeft: "20px" }}
+                                    id="standard-required"
+                                    label="Prix de vente"
+                                    variant="outlined"
+                                    m={4}
+                                />
+
+                                <FormControl m={2} style={{ width: "40%" }}>
+                                    <InputLabel style={{ marginLeft: "20px" }}>Unité</InputLabel>
+                                    <Select
+                                        m={4}
+
+                                    >
+
+                                        <MenuItem value={"0"}>Piéce</MenuItem>
+                                        <MenuItem value={"2"}>ML</MenuItem>
+                                        <MenuItem value={"6"}>M²</MenuItem>
+                                    </Select>
+                                </FormControl>
+
+                                <FormControl m={2} style={{ width: "40%" }}>
+                                    <InputLabel style={{ marginLeft: "20px" }}>Fournissuer</InputLabel>
+                                    <Select
+                                        m={4}
+
+                                    >
+
+                                        <MenuItem value={"0"}>Fournisseur 1</MenuItem>
+                                        <MenuItem value={"2"}>Fournisseur 2</MenuItem>
+                                        <MenuItem value={"6"}>Fournisseur 3</MenuItem>
+                                    </Select>
+                                </FormControl>
+
+
                                 <Autocomplete
                                     id="standard-required"
                                     options={service}
                                     getOptionLabel={(option) => option}
-                                    style={{ width: "40%" }}
+                                    style={{ width: "40%", marginLeft: "20px" }}
                                     renderInput={(params) => <TextField {...params} label="Service" variant="outlined" />}
                                     m={4}
                                 />
 
 
-                                <FormControl style={{ marginTop: "45px" }} fullWidth my={2} variant="outlined">
 
-                                    <TextField
-
-                                        style={{ width: "75%" }}
-                                        label="Description"
-                                        id="biography"
-                                        multiline={true}
-                                        rows={3}
-                                        rowsMax={4}
-                                        variant="outlined"
-                                        defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
-                                    />
-                                </FormControl>
                                 <BigAvatar
                                     alt="Remy Sharp"
                                     style={{ marginLeft: "18px" }}
