@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from "styled-components/macro";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import ImageZoom from 'react-medium-image-zoom';
 import { Helmet } from "react-helmet-async";
 import {
     Avatar,
@@ -143,9 +144,22 @@ export default class DisplayCategorie extends Component {
                                         variant="outlined"
                                     />
                                 </FormControl>
-                                <BigAvatar
-                                    alt="Remy Sharp"
-                                    src="/static/img/avatars/avatar-1.jpg"
+
+                                <ImageZoom
+                                    image={{
+                                        style: {
+                                            marginTop: "15px", width: "150px", borderRadius: "4px"
+
+                                        },
+                                        src: "/static/img/avatars/avatar-1.jpg",
+                                        alt: 'Golden Gate Bridge',
+                                        className: 'img',
+
+                                    }}
+                                    zoomImage={{
+                                        src: "/static/img/avatars/avatar-1.jpg",
+                                        alt: 'Golden Gate Bridge'
+                                    }}
                                 />
 
                             </Grid>

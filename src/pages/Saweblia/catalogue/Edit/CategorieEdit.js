@@ -74,7 +74,8 @@ const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
   width: 154px;
-  height: 85px;
+  height : 120px;
+  max-height  : 150px;
   border-radius: 3px;
   margin-top : 20px;
 

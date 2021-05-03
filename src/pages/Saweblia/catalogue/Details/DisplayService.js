@@ -37,6 +37,9 @@ import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
 import { FiTrash2, FiSave, FiHome, FiUploadCloud, FiEdit, FiEye, FiChevronsLeft } from "react-icons/fi";
 
+import ImageZoom from 'react-medium-image-zoom';
+
+
 import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
 
 import { spacing } from "@material-ui/system";
@@ -166,11 +169,22 @@ export default class DisplayService extends Component {
                                         defaultValue="Lucy is a Freelance Writer and Social Media Manager who helps finance professionals and Fin-tech startups build an audience and get more paying clients online."
                                     />
                                 </FormControl>
-                                <BigAvatar
-                                    alt="Remy Sharp"
-                                    src="/static/img/avatars/avatar-1.jpg"
-                                />
+                                <ImageZoom
+                                    image={{
+                                        style: {
+                                            marginTop: "15px", width: "150px", borderRadius: "4px"
 
+                                        },
+                                        src: "/static/img/avatars/avatar-1.jpg",
+                                        alt: 'Golden Gate Bridge',
+                                        className: 'img',
+
+                                    }}
+                                    zoomImage={{
+                                        src: "/static/img/avatars/avatar-1.jpg",
+                                        alt: 'Golden Gate Bridge'
+                                    }}
+                                />
                             </Grid>
 
                         </Grid>

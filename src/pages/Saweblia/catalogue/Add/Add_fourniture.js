@@ -75,13 +75,16 @@ const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
   width: 154px;
-  height: 80px;
+  height : 120px;
+  max-height  : 150px;
   border-radius: 3px;
   margin-top : 20px;
 
 `;
 
-const service = ["service 1 ", "service 2", "service 3", "service 4", "service 5"]
+const service = ["service 1 ", "service 2", "service 3", "service 4", "service 5"];
+const Unite = ["M²", "ML", "Piéce", "KG"];
+const Fournissuer = ["Fournissuer 1", "Fournissuer 2", "Fournissuer 3", "Fournissuer 4"];
 
 export default class Add_fourniture extends Component {
     render() {
@@ -130,7 +133,8 @@ export default class Add_fourniture extends Component {
                                     m={4}
                                 />
 
-
+                                <br />
+                                <br />
                                 <TextField
 
                                     style={{ width: "75%", marginLeft: "20px" }}
@@ -145,7 +149,8 @@ export default class Add_fourniture extends Component {
 
 
 
-
+                                <br />
+                                <br />
 
 
 
@@ -168,33 +173,28 @@ export default class Add_fourniture extends Component {
                                     m={4}
                                 />
 
-                                <FormControl m={2} style={{ width: "40%" }}>
-                                    <InputLabel style={{ marginLeft: "20px" }}>Unité</InputLabel>
-                                    <Select
+                                <Paper mt={3} style={{ display: "inline-block", width: "40%", marginLeft: "18px" }}>
+                                    <Autocomplete
+                                        id="standard-required"
+                                        options={Unite}
+                                        getOptionLabel={(option) => option}
+                                        renderInput={(params) => <TextField {...params} label="Unité" variant="outlined" />}
                                         m={4}
-
-                                    >
-
-                                        <MenuItem value={"0"}>Piéce</MenuItem>
-                                        <MenuItem value={"2"}>ML</MenuItem>
-                                        <MenuItem value={"6"}>M²</MenuItem>
-                                    </Select>
-                                </FormControl>
-
-                                <FormControl m={2} style={{ width: "40%" }}>
-                                    <InputLabel style={{ marginLeft: "20px" }}>Fournissuer</InputLabel>
-                                    <Select
+                                    />
+                                </Paper>
+                                <Paper mt={3} style={{ display: "inline-block", width: "40%", marginLeft: "37px" }}>
+                                    <Autocomplete
+                                        id="standard-required"
+                                        options={Fournissuer}
+                                        getOptionLabel={(option) => option}
+                                        renderInput={(params) => <TextField {...params} label="Fournissuer" variant="outlined" />}
                                         m={4}
+                                    />
+                                </Paper>
 
-                                    >
-
-                                        <MenuItem value={"0"}>Fournisseur 1</MenuItem>
-                                        <MenuItem value={"2"}>Fournisseur 2</MenuItem>
-                                        <MenuItem value={"6"}>Fournisseur 3</MenuItem>
-                                    </Select>
-                                </FormControl>
-
-
+                                <br />
+                                <br />
+                                <br />
                                 <Autocomplete
                                     id="standard-required"
                                     options={service}
@@ -208,7 +208,7 @@ export default class Add_fourniture extends Component {
 
                                 <BigAvatar
                                     alt="Remy Sharp"
-                                    style={{ marginLeft: "18px" }}
+                                    style={{ marginLeft: "20px" }}
                                     src="/static/img/avatars/avatar-1.jpg"
                                 />
                                 <input
@@ -220,7 +220,7 @@ export default class Add_fourniture extends Component {
                                     type="file"
                                 />
                                 <label htmlFor="raised-button-file" style={{ float: "left" }}>
-                                    <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
+                                    <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "20px", fontSize: "11px" }} component="span">
                                         <FiUploadCloud size={15} style={{ marginRight: "5px" }} /> Télécharger Média
                                      </Button>
                                 </label>

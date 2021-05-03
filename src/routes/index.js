@@ -175,73 +175,96 @@ const CatalogueRoutess = {
       name: "Fournitures",
       component: Fournitures,
     },
-    {
-      path: "/Catalogues/Add_categorie",
-      name: "Ajouter categorie",
-      component: Add_categorie,
-    },
-    {
-      path: "/Catalogues/Add_service",
-      name: "Ajouter service",
-      component: Add_service,
-    },
-    {
-      path: "/Catalogues/Add_prestation",
-      name: "Ajouter prestation",
-      component: Add_prestation,
-    },
-    {
-      path: "/Catalogues/Add_fourniture",
-      name: "Ajouter fourniture",
-      component: Add_fourniture,
-
-    },
-    {
-      path: "/Catalogues/Service_Edit",
-      name: "Modifier Service",
-      component: ServiceEdit,
-    },
-    {
-      path: "/Catalogues/Prestation_Edit",
-      name: "Modifier prestation",
-      component: PrestationEdit,
-    },
-    {
-      path: "/Catalogues/Categorie_Edit",
-      name: "Modification catégorie",
-      component: CategorieEdit,
-    },
-    {
-      path: "/Catalogues/Fourniture_Edit",
-      name: "Modification Fourniture",
-      component: FournitureEdit,
-    },
-    {
-      path: "/Catalogues/DisplayService",
-      name: "Afficher Service",
-      component: DisplayService,
-    },
-    {
-      path: "/Catalogues/DisplayPrestation",
-      name: "Afficher prestation",
-      component: DisplayPrestation,
-    },
-    {
-      path: "/Catalogues/Display_Categorie",
-      name: "Afficher catégorie",
-      component: DisplayCategorie,
-    },
-    {
-      path: "/Catalogues/Display_fourniture",
-      name: "Afficher fourniture",
-      component: DisplayFourniture,
-    },
 
   ]
 }
 
+const Add_categories = {
+  path: "/Catalogues/Add_categorie",
+  name: "Ajouter categorie",
+  component: Add_categorie,
+  children: null,
+};
+
+const Add_services = {
+  path: "/Catalogues/Add_service",
+  name: "Ajouter service",
+  component: Add_service,
+  children: null,
+};
+
+const Add_prestations = {
+  path: "/Catalogues/Add_prestation",
+  name: "Ajouter prestation",
+  component: Add_prestation,
+  children: null,
+};
+
+const Add_fournitures = {
+  path: "/Catalogues/Add_fourniture",
+  name: "Ajouter fourniture",
+  component: Add_fourniture,
+  children: null,
+};
+
+const Service_Edits = {
+  path: "/Catalogues/Service_Edit",
+  name: "Modifier Service",
+  component: ServiceEdit,
+  children: null,
+};
+
+const Prestation_Edits = {
+  path: "/Catalogues/Prestation_Edit",
+  name: "Modifier prestation",
+  component: PrestationEdit,
+  children: null,
+};
 
 
+const Categorie_Edit = {
+  path: "/Catalogues/Categorie_Edit",
+  name: "Modification catégorie",
+  component: CategorieEdit,
+  children: null,
+};
+
+
+const Fourniture_Edits = {
+  path: "/Catalogues/Fourniture_Edit",
+  name: "Modification Fourniture",
+  component: FournitureEdit,
+  children: null,
+};
+
+
+const DisplayServices = {
+  path: "/Catalogues/DisplayService",
+  name: "Afficher Service",
+  component: DisplayService,
+  children: null,
+};
+
+const DisplayPrestations = {
+  path: "/Catalogues/DisplayPrestation",
+  name: "Afficher prestation",
+  component: DisplayPrestation,
+  children: null,
+};
+
+const Display_Categories = {
+  path: "/Catalogues/Display_Categorie",
+  name: "Afficher catégorie",
+  component: DisplayCategorie,
+  children: null,
+};
+
+const Display_fournitures = {
+  path: "/Catalogues/Display_fourniture",
+  name: "Afficher fourniture",
+  component: DisplayFourniture,
+  children: null,
+};
 // Comptes Routes
 const CompteRoutes = {
   id: "Comptes",
@@ -743,6 +766,18 @@ const protectedPageRoutes = {
 
 // Routes using the Dashboard layout
 export const dashboardLayoutRoutes = [
+  Add_services,
+  Add_prestations,
+  Service_Edits,
+  Add_fournitures,
+  Prestation_Edits,
+  Categorie_Edit,
+  Fourniture_Edits,
+  DisplayServices,
+  DisplayPrestations,
+  Display_Categories,
+  Display_fournitures,
+  Add_categories,
   CatalogueRoutess,
   Fournisseur_Display,
   Coordinateur_Edit,
@@ -781,6 +816,18 @@ export const protectedRoutes = [protectedPageRoutes];
 
 // Routes visible in the sidebar
 export const sidebarRoutes = [
+  Add_services,
+  Add_prestations,
+  Add_fournitures,
+  Service_Edits,
+  Prestation_Edits,
+  Categorie_Edit,
+  Fourniture_Edits,
+  DisplayServices,
+  DisplayPrestations,
+  Display_Categories,
+  Display_fournitures,
+  Add_categories,
   CatalogueRoutess,
   Fournisseur_Display,
   Coordinateur_Edit,

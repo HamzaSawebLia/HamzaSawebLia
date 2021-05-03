@@ -76,7 +76,8 @@ const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
   width: 154px;
-  height: 80px;
+  height : 120px;
+  max-height  : 150px;
   border-radius: 3px;
   margin-top : 20px;
 
@@ -207,7 +208,7 @@ export default class Add_service extends Component {
                                     <TableCell align="left" style={{ width: "10%" }}>Libelle Service</TableCell>
                                     <TableCell align="left"> description DH </TableCell>
                                     <TableCell align="left"> 2000 DH </TableCell>
-                                    <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /> </TableCell>
+                                    <TableCell align="left" ><Link component={NavLink} style={{ marginRight: "10px" }} exact to="/Catalogues/Prestation_Edit"> <FiEdit size={17} /></Link> <Link component={NavLink} exact to="/Catalogues/DisplayPrestation"> <FiEye size={17} /></Link></TableCell>
                                 </TableRow>
 
 

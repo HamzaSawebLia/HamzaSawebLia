@@ -32,6 +32,7 @@ import {
     Radio,
 
 } from "@material-ui/core";
+import ImageZoom from 'react-medium-image-zoom';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Map, Home, Save } from "react-feather";
 import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
@@ -225,9 +226,21 @@ export default class DisplayPrestation extends Component {
                                 />
 
 
-                                <BigAvatar
-                                    alt="Remy Sharp"
-                                    src="/static/img/avatars/avatar-1.jpg"
+                                <ImageZoom
+                                    image={{
+                                        style: {
+                                            marginTop: "15px", width: "150px", borderRadius: "4px"
+
+                                        },
+                                        src: "/static/img/avatars/avatar-1.jpg",
+                                        alt: 'Golden Gate Bridge',
+                                        className: 'img',
+
+                                    }}
+                                    zoomImage={{
+                                        src: "/static/img/avatars/avatar-1.jpg",
+                                        alt: 'Golden Gate Bridge'
+                                    }}
                                 />
 
                             </Grid>

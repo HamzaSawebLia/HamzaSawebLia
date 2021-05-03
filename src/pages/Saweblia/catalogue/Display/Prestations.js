@@ -94,7 +94,7 @@ export default class Prestations extends Component {
                                     <TableCell align="left">Service prestation</TableCell>
                                     <TableCell align="left"> 1540 DH </TableCell>
                                     <TableCell align="left"> 10%  </TableCell>
-                                    <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> </TableCell>
+                                    <TableCell align="left" ><Link component={NavLink} style={{ marginRight: "10px" }} exact to="/Catalogues/Prestation_Edit"> <FiEdit size={17} /></Link> <Link component={NavLink} exact to="/Catalogues/DisplayPrestation"> <FiEye size={17} /></Link></TableCell>
                                 </TableRow>
 
 

@@ -94,7 +94,7 @@ export default class Services extends Component {
                                     <TableCell align="left" style={{ width: "10%" }}>Libelle Service</TableCell>
                                     <TableCell align="left">Description Service</TableCell>
                                     <TableCell align="left">Marge bénéfice Service </TableCell>
-                                    <TableCell align="left"><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /></TableCell>
+                                    <TableCell align="left" ><Link component={NavLink} style={{ marginRight: "10px" }} exact to="/Catalogues/Service_Edit"> <FiEdit size={17} /></Link> <Link component={NavLink} exact to="/Catalogues/DisplayService"> <FiEye size={17} /></Link></TableCell>
                                 </TableRow>
 
 

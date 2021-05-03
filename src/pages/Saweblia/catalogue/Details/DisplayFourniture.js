@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from "styled-components/macro";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import ImageZoom from 'react-medium-image-zoom';
 import { Helmet } from "react-helmet-async";
 import {
     Avatar,
@@ -97,7 +98,7 @@ export default class DisplayFourniture extends Component {
                                 </Breadcrumbs>
 
 
-                                <Link component={NavLink} exact to="/Catalogues/services">
+                                <Link component={NavLink} exact to="/Catalogues/fournitures">
                                     <Button variant="contained" style={{ float: "right", marginRight: "10px", marginTop: "-26px" }} >
                                         <FiChevronsLeft size={24} style={{ marginRight: "10px" }} />
                                     </Button>
@@ -221,10 +222,21 @@ export default class DisplayFourniture extends Component {
 
 
 
-                                <BigAvatar
-                                    alt="Remy Sharp"
-                                    style={{ marginLeft: "18px" }}
-                                    src="/static/img/avatars/avatar-1.jpg"
+                                <ImageZoom
+                                    image={{
+                                        style: {
+                                            marginLeft: "18px", width: "150px", borderRadius: "4px"
+
+                                        },
+                                        src: "/static/img/avatars/avatar-1.jpg",
+                                        alt: 'Golden Gate Bridge',
+                                        className: 'img',
+
+                                    }}
+                                    zoomImage={{
+                                        src: "/static/img/avatars/avatar-1.jpg",
+                                        alt: 'Golden Gate Bridge'
+                                    }}
                                 />
 
                             </Grid>

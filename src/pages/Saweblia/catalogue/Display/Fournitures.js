@@ -60,7 +60,7 @@ export default class Fournitures extends Component {
                    </Link>
                             <Typography>Fourniture</Typography>
                         </Breadcrumbs>
-                        <Link component={NavLink} exact to="/Catalogues/Add_categorie"><Button style={{ float: "right", marginTop: "-28px" }} variant="contained" color="secondary" m={1}> <FiPlus style={{ marginRight: "10px" }} /> <span> </span>Ajouter  </Button> </Link>
+                        <Link component={NavLink} exact to="/Catalogues/Add_fourniture"><Button style={{ float: "right", marginTop: "-28px" }} variant="contained" color="secondary" m={1}> <FiPlus style={{ marginRight: "10px" }} /> <span> </span>Ajouter  </Button> </Link>
                     </CardContent>
                 </Card>
 
@@ -95,7 +95,7 @@ export default class Fournitures extends Component {
                                     <TableCell align="left">  1500dh</TableCell>
                                     <TableCell align="left"> 2000DH </TableCell>
                                     <TableCell align="left"> Fournisseur Name </TableCell>
-                                    <TableCell align="left" ><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /></TableCell>
+                                    <TableCell align="left" ><Link component={NavLink} style={{ marginRight: "20px" }} exact to="/Catalogues/Fourniture_Edit"> <FiEdit size={17} /></Link> <Link component={NavLink} exact to="/Catalogues/Display_fourniture"> <FiEye size={17} /></Link></TableCell>
                                 </TableRow>
 
 

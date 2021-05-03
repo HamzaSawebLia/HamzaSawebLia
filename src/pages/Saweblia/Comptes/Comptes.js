@@ -55,7 +55,7 @@ export default class Comptes extends Component {
   componentDidMount() {
 
     this.setState({
-      tableHead: ["Nom", "Tél", "Email", "Type", "Statut", ""],
+      tableHead: ["Nom", "Tél", "Email", "Type", "Statut", "Date de création", ""],
     });
   }
 
@@ -63,7 +63,7 @@ export default class Comptes extends Component {
     this.setState({
       type: 1,
       clickedType: 1,
-      tableHead: ["Nom", "Tél", "Email", "Type", "Statut", ""],
+      tableHead: ["Nom", "Tél", "Email", "Type", "Statut", "Date de création", ""],
     });
 
   }
@@ -72,7 +72,7 @@ export default class Comptes extends Component {
     this.setState({
       type: 2,
       clickedType: 2,
-      tableHead: ["Nom", "Tél", "CIN", "Ville", "Solde d'Artisan", " "]
+      tableHead: ["Nom", "Tél", "CIN", "Ville", "Date de création", " "]
     });
   }
 
@@ -90,7 +90,7 @@ export default class Comptes extends Component {
     this.setState({
       type: 4,
       clickedType: 4,
-      tableHead: ["Nom ", " Contact", "Tél", "Ville", "Adresse", " "]
+      tableHead: ["Nom ", " Contact", "Tél", "Ville", "Adresse", "Date de création", " "]
     });
 
   }
@@ -153,7 +153,13 @@ export default class Comptes extends Component {
               </div>
             </Typography>
           </CardContent>
+
           <Paper>
+
+
+
+
+
             <Table>
               <TableHead>
 
@@ -174,6 +180,8 @@ export default class Comptes extends Component {
                     <TableCell align="left">Client Tél</TableCell>
                     <TableCell align="left">Client Email</TableCell>
                     <TableCell align="left">Client type</TableCell>
+
+
                     <TableCell align="left"><FormControlLabel
                       control={
                         <Switch
@@ -181,6 +189,8 @@ export default class Comptes extends Component {
                         />
                       }
                     /></TableCell>
+                    <TableCell align="left">Client Date</TableCell>
+
                     <TableCell align="left"><Link component={NavLink} exact to={{ pathname: "/Comptes/Edit_client", state: { IdClient: "1" } }}> <Button><FiEdit size={20} /></Button></Link> <Link component={NavLink} exact to={{ pathname: "/Comptes/ClientDisplay", state: { IdFournisseur: "1" } }}> <Button style={{ marginLeft: "-30px" }}><FiEye size={20} /></Button></Link></TableCell>
                   </TableRow>
                 ) : null
@@ -192,7 +202,7 @@ export default class Comptes extends Component {
                     <TableCell align="left">Artisan Tél</TableCell>
                     <TableCell align="left">Artisan CIN</TableCell>
                     <TableCell align="left">Solde vilel</TableCell>
-                    <TableCell align="left">Solde artisan</TableCell>
+                    <TableCell align="left">Date</TableCell>
                     <TableCell align="left"><Link component={NavLink} exact to={{ pathname: "/Comptes/Edit_artisan", state: { IdArtisan: "1" } }}> <Button><FiEdit size={20} /></Button></Link> <Link component={NavLink} exact to={{ pathname: "/Comptes/ArtisanDisplay", state: { IdFournisseur: "1" } }}> <Button style={{ marginLeft: "-30px" }}><FiEye size={20} /></Button></Link></TableCell>
                     <TableCell style={{ width: "10%" }} align="left"></TableCell>
 
@@ -217,11 +227,12 @@ export default class Comptes extends Component {
                 {this.state.type == 4 ? (
                   <TableRow >
 
-                    <TableCell style={{ width: "10%" }} align="left">Nom fr</TableCell>
+                    <TableCell style={{ width: "5%" }} align="left">Nom fr</TableCell>
                     <TableCell align="left">Contact fr</TableCell>
                     <TableCell align="left">Tél fr</TableCell>
                     <TableCell align="left">Ville fr</TableCell>
                     <TableCell align="left">Adresse fr</TableCell>
+                    <TableCell align="left">Date fr</TableCell>
                     <TableCell align="left"><Link component={NavLink} exact to={{ pathname: "/Comptes/Edit_Fournisseur", state: { IdFournisseur: "1" } }}> <Button><FiEdit size={20} /></Button></Link> <Link component={NavLink} exact to={{ pathname: "/Comptes/FournisseurDisplay", state: { IdFournisseur: "1" } }}> <Button style={{ marginLeft: "-30px" }}><FiEye size={20} /></Button></Link></TableCell>
 
 

@@ -27,6 +27,9 @@ import {
   Typography,
 } from "@material-ui/core";
 
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
+
 import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
 import { CloudUpload as MuiCloudUpload, Label } from "@material-ui/icons";
@@ -68,6 +71,11 @@ const BigAvatar = styled(Avatar)`
   margin-top : 20px;
 
 `;
+const Zone = ["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"];
+const delai = ["Aucun délai", "30 jours", "45 jours", "60 jours", "90 jours"]
+const canal = ["FaceBook / Instagram", "Web Site", "Application mobile", "Google"];
+const categorie = ["Entreprise", "Personnelle", "3", " 4"];
+const status = ["Société", "auto-entrepreneur", "Artisan"]
 export default class CreerCompte extends Component {
   constructor(props) {
     super(props);
@@ -705,23 +713,19 @@ export default class CreerCompte extends Component {
                         </Select>
                       </FormControl>
 
-                      <FormControl m={2} style={{ width: "40%" }}>
-                        <InputLabel style={{ marginLeft: "20px" }}>Status professionel</InputLabel>
-                        <Select
+
+                      <Paper mt={3} style={{ display: "inline-block", width: "40%", marginLeft: "18px" }}>
+                        <Autocomplete
+                          id="standard-required"
+                          options={status}
+                          getOptionLabel={(option) => option}
                           value={this.state.artisan_status}
                           onChange={this.onchange_artisan_artisan_status}
-
+                          renderInput={(params) => <TextField {...params} label="Status professionel" variant="outlined" />}
                           m={4}
+                        />
+                      </Paper>
 
-                        >
-
-                          <MenuItem value={2}>Société</MenuItem>
-                          <MenuItem value={3}>2</MenuItem>
-                          <MenuItem value={4}>auto-entrepreneur</MenuItem>
-                          <MenuItem value={5}>Artisan</MenuItem>
-
-                        </Select>
-                      </FormControl>
                     </Paper>
                     <Paper mt={3} style={{ width: "50%" }} >
                       {this.state.table_metier.length != 0 ? (
@@ -758,36 +762,29 @@ export default class CreerCompte extends Component {
 
                 <Grid container spacing={6} >
                   <Grid item md={8}>
-                    <Paper mt={3}>
-                      <FormControl m={2} style={{ width: "40%" }}>
-                        <InputLabel >Canal d'acquisition</InputLabel>
-                        <Select
-                          value={this.state.client_access_channel}
-                          onChange={this.onchange_client_access_channel}
-
-                        >
-                          <MenuItem value={"facebook/instagram"}>FaceBook / Instagram</MenuItem>
-                          <MenuItem value={"web"}>Web Site</MenuItem>
-                          <MenuItem value={"application"}>Application mobile</MenuItem>
-                          <MenuItem value={"google"}>Google</MenuItem>
-
-                        </Select>
-                      </FormControl>
-                      <FormControl m={2} style={{ width: "40%", marginLeft: "20px" }}>
-                        <InputLabel >Catégorie</InputLabel>
-                        <Select
-                          value={this.state.client_type}
-                          onChange={this.onchange_client_type}
-
-                        >
-                          <MenuItem value={"1"}>Entreprise</MenuItem>
-                          <MenuItem value={"2"}>Personnelle</MenuItem>
-                          <MenuItem value={"3"}>3</MenuItem>
-                          <MenuItem value={"4"}>4</MenuItem>
-
-                        </Select>
-                      </FormControl>
+                    <Paper mt={3} style={{ display: "inline-block", width: "40%" }}>
+                      <Autocomplete
+                        id="standard-required"
+                        options={canal}
+                        getOptionLabel={(option) => option}
+                        value={this.state.client_access_channel}
+                        onChange={this.onchange_client_access_channel}
+                        renderInput={(params) => <TextField {...params} label="Canal d'acquisition" variant="outlined" />}
+                        m={4}
+                      />
                     </Paper>
+                    <Paper mt={3} style={{ display: "inline-block", width: "40%", marginLeft: "18px" }}>
+                      <Autocomplete
+                        id="standard-required"
+                        options={categorie}
+                        getOptionLabel={(option) => option}
+                        value={this.state.client_type}
+                        onChange={this.onchange_client_type}
+                        renderInput={(params) => <TextField {...params} label="Catégorie" variant="outlined" />}
+                        m={4}
+                      />
+                    </Paper>
+
                     <FormControl fullWidth my={2} variant="outlined">
                       <TextField
                         style={{ marginTop: "20px" }}
@@ -1035,63 +1032,34 @@ export default class CreerCompte extends Component {
 
                   </form>
 
-                  <Paper mt={3}>
-
-                    <FormControl m={2} style={{ width: "40%" }}>
-                      <InputLabel style={{ marginLeft: "20px" }}>Délai de paiement</InputLabel>
-                      <Select
-                        value={this.state.fournisseur_delai}
-                        onChange={this.onchange_fournisseur_delai}
-
-                        m={4}
-
-                      >
-
-                        <MenuItem value={2}>Acun délai</MenuItem>
-                        <MenuItem value={3}>30 jours</MenuItem>
-                        <MenuItem value={4}>45 jours</MenuItem>
-                        <MenuItem value={5}>60 jours</MenuItem>
-                        <MenuItem value={5}>90 jours</MenuItem>
-                      </Select>
-                    </FormControl>
-
-                    <FormControl style={{ marginLeft: "30px" }} component="fieldset">
-                      <FormLabel component="legend">Compte ouvert  </FormLabel>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={this.state.fournisseur_ouvert}
-                            onChange={this.onchange_fournisseur_ouvert}
-
-                          />
-                        }
-
-                      />
-                    </FormControl>
 
 
+                  <Paper mt={3} style={{ display: "inline-block", width: "40%", marginLeft: "18px" }}>
+                    <Autocomplete
+                      id="standard-required"
+                      options={delai}
+                      getOptionLabel={(option) => option}
+                      value={this.state.fournisseur_delai}
+                      onChange={this.onchange_fournisseur_delai}
+                      renderInput={(params) => <TextField {...params} label="Délai de paiement" variant="outlined" />}
+                      m={4}
+                    />
+                  </Paper>
+                  <Paper mt={3} style={{ display: "inline-block", width: "40%", marginLeft: "18px" }}>
+                    <Autocomplete
+                      id="standard-required"
+                      options={Zone}
+                      getOptionLabel={(option) => option}
+                      value={this.state.fournisseur_zone}
+                      onChange={this.onchange_fournisseur_zone}
+                      renderInput={(params) => <TextField {...params} label="Zone" variant="outlined" />}
+                      m={4}
+                    />
                   </Paper>
 
 
                   <Paper mt={3}>
 
-                    <FormControl m={2} style={{ width: "40%" }}>
-                      <InputLabel style={{ marginLeft: "20px" }}>Zone</InputLabel>
-                      <Select
-                        value={this.state.fournisseur_zone}
-                        onChange={this.onchange_fournisseur_zone}
-
-                        m={4}
-
-                      >
-
-                        <MenuItem value={2}>Zone 1</MenuItem>
-                        <MenuItem value={3}>Zone 2</MenuItem>
-                        <MenuItem value={4}>Zone 3</MenuItem>
-                        <MenuItem value={5}>Zone 4  </MenuItem>
-
-                      </Select>
-                    </FormControl>
 
                     <FormControl m={2} style={{ width: "40%" }}>
                       <InputLabel style={{ marginLeft: "20px" }}>Univers </InputLabel>
@@ -1112,6 +1080,20 @@ export default class CreerCompte extends Component {
                         <MenuItem value={"Bricolage"}>Bricolage</MenuItem>
 
                       </Select>
+                    </FormControl>
+
+                    <FormControl style={{ marginLeft: "30px" }} component="fieldset">
+                      <FormLabel component="legend">Compte ouvert  </FormLabel>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={this.state.fournisseur_ouvert}
+                            onChange={this.onchange_fournisseur_ouvert}
+
+                          />
+                        }
+
+                      />
                     </FormControl>
 
 

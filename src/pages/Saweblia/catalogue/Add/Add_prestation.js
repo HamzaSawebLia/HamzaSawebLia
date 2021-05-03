@@ -75,7 +75,8 @@ const Alert = styled(MuiAlert)(spacing);
 
 const BigAvatar = styled(Avatar)`
   width: 154px;
-  height: 80px;
+  height : 120px;
+  max-height  : 150px;
   border-radius: 3px;
   margin-top : 20px;
 
@@ -155,16 +156,22 @@ export default class Add_prestation extends Component {
                                     variant="outlined"
                                     m={4}
                                 />
-                                <Autocomplete
-                                    id="standard-required"
-                                    options={service}
-                                    getOptionLabel={(option) => option}
-                                    style={{ width: "40%" }}
-                                    renderInput={(params) => <TextField {...params} label="Service" variant="outlined" />}
-                                    m={4}
-                                />
+                            </Grid>
+
+                        </Grid>
+                        <Paper mt={3} style={{ display: "inline-block", width: "40%" }}>
+                            <Autocomplete
+                                id="standard-required"
+                                options={service}
+                                getOptionLabel={(option) => option}
+                                renderInput={(params) => <TextField {...params} label="Service" variant="outlined" />}
+                                m={4}
+                            />
+                        </Paper>
 
 
+                        <Grid container spacing={8} >
+                            <Grid item md={12}>
                                 <FormControl style={{ marginTop: "45px" }} fullWidth my={2} variant="outlined">
 
                                     <TextField
@@ -181,7 +188,7 @@ export default class Add_prestation extends Component {
                                 </FormControl>
                                 <BigAvatar
                                     alt="Remy Sharp"
-                                    style={{ marginLeft: "18px" }}
+
                                     src="/static/img/avatars/avatar-1.jpg"
                                 />
                                 <input
@@ -193,7 +200,7 @@ export default class Add_prestation extends Component {
                                     type="file"
                                 />
                                 <label htmlFor="raised-button-file" style={{ float: "left" }}>
-                                    <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", marginLeft: "18px", fontSize: "11px" }} component="span">
+                                    <Button variant="contained" color="primary" style={{ marginTop: "20px", marginBottom: "20px", fontSize: "11px" }} component="span">
                                         <FiUploadCloud size={15} style={{ marginRight: "5px" }} /> Télécharger Média
                                      </Button>
                                 </label>

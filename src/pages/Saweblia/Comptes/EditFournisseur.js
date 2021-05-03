@@ -31,6 +31,8 @@ import { Alert as MuiAlert, AlertTitle } from "@material-ui/lab";
 
 import { FiPlus, FiChevronsLeft, FiSave, FiHome, FiMap, FiUploadCloud } from "react-icons/fi";
 
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 
 import { CloudUpload as MuiCloudUpload } from "@material-ui/icons";
 
@@ -69,6 +71,11 @@ const BigAvatar = styled(Avatar)`
   margin-top : 20px;
 
 `;
+const Zone = ["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"];
+const delai = ["Aucun délai", "30 jours", "45 jours", "60 jours", "90 jours"]
+
+
+
 export default class EditFournisseur extends Component {
   constructor(props) {
     super(props);
@@ -363,45 +370,32 @@ export default class EditFournisseur extends Component {
 
                 </form>
 
-                <Paper mt={3}>
-
-                  <FormControl m={2} style={{ width: "40%" }}>
-                    <InputLabel style={{ marginLeft: "20px" }}>Délai de paiement</InputLabel>
-                    <Select
-                      value={this.state.fournisseur_delai}
-                      onChange={this.onchange_fournisseur_delai}
-
-                      m={4}
-
-                    >
-
-                      <MenuItem value={2}>Acun délai</MenuItem>
-                      <MenuItem value={3}>30 jours</MenuItem>
-                      <MenuItem value={4}>45 jours</MenuItem>
-                      <MenuItem value={5}>60 jours</MenuItem>
-                      <MenuItem value={5}>90 jours</MenuItem>
-                    </Select>
-                  </FormControl>
-
-                  <FormControl style={{ marginLeft: "30px" }} component="fieldset">
-                    <FormLabel component="legend">Compte ouvert  </FormLabel>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={this.state.fournisseur_ouvert}
-                          onChange={this.onchange_fournisseur_ouvert}
-
-                        />
-                      }
-
-                    />
-                  </FormControl>
-
-
+                <Paper mt={3} style={{ display: "inline-block", width: "40%", marginLeft: "18px" }}>
+                  <Autocomplete
+                    id="standard-required"
+                    options={delai}
+                    getOptionLabel={(option) => option}
+                    value={this.state.fournisseur_delai}
+                    onChange={this.onchange_fournisseur_delai}
+                    renderInput={(params) => <TextField {...params} label="Délai de paiement" variant="outlined" />}
+                    m={4}
+                  />
+                </Paper>
+                <Paper mt={3} style={{ display: "inline-block", width: "40%", marginLeft: "18px" }}>
+                  <Autocomplete
+                    id="standard-required"
+                    options={Zone}
+                    getOptionLabel={(option) => option}
+                    value={this.state.fournisseur_zone}
+                    onChange={this.onchange_fournisseur_zone}
+                    renderInput={(params) => <TextField {...params} label="Zone" variant="outlined" />}
+                    m={4}
+                  />
                 </Paper>
 
 
                 <Paper mt={3}>
+
 
                   <FormControl m={2} style={{ width: "40%" }}>
                     <InputLabel style={{ marginLeft: "20px" }}>Univers </InputLabel>
@@ -424,28 +418,23 @@ export default class EditFournisseur extends Component {
                     </Select>
                   </FormControl>
 
-                  <FormControl m={2} style={{ width: "40%" }}>
-                    <InputLabel style={{ marginLeft: "20px" }}>Zone</InputLabel>
-                    <Select
-                      value={this.state.fournisseur_zone}
-                      onChange={this.onchange_fournisseur_zone}
+                  <FormControl style={{ marginLeft: "30px" }} component="fieldset">
+                    <FormLabel component="legend">Compte ouvert  </FormLabel>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={this.state.fournisseur_ouvert}
+                          onChange={this.onchange_fournisseur_ouvert}
 
-                      m={4}
+                        />
+                      }
 
-                    >
-
-                      <MenuItem value={2}>Zone 1</MenuItem>
-                      <MenuItem value={3}>Zone 2</MenuItem>
-                      <MenuItem value={4}>Zone 3</MenuItem>
-                      <MenuItem value={5}>Zone 4  </MenuItem>
-
-                    </Select>
+                    />
                   </FormControl>
 
 
-
-
                 </Paper>
+
 
                 <Paper mt={3} style={{ width: "50%" }}>
                   {this.state.table_univers.length != 0 ? (

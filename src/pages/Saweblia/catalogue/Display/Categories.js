@@ -89,7 +89,7 @@ export default class Categories extends Component {
                                 <TableRow >
                                     <TableCell align="left" style={{ width: "30%" }}>Libelle Service</TableCell>
                                     <TableCell align="left">Description Service</TableCell>
-                                    <TableCell align="left" ><FiEdit size={17} style={{ marginLeft: "10px" }} /> <FiEye size={17} /> <FiTrash2 size={17} /></TableCell>
+                                    <TableCell align="left" ><Link component={NavLink} style={{ marginRight: "10px" }} exact to="/Catalogues/Categorie_Edit"> <FiEdit size={17} /></Link> <Link component={NavLink} exact to="/Catalogues/Display_Categorie"> <FiEye size={17} /></Link></TableCell>
                                 </TableRow>
 
 
